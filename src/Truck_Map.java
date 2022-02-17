@@ -1,10 +1,15 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.*;
+/*
+Class used for generating the basic drawn components of the Jframe Truck_Map. Components can be added in various
+methods and then added to paint() in other to be drawn on the JFrame.
+ */
 
+import java.awt.*;
 
 public class Truck_Map extends Panel
 {
+    /*
+    Draws the basic gridlines on the JFrame, which are used to position addresses
+     */
     void drawLines(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
@@ -34,6 +39,9 @@ public class Truck_Map extends Panel
 
     }
 
+    /*
+    Method used to control the drawing components on the JFrame
+     */
     public void paint(Graphics g) {
         super.paint(g);
         drawLines(g);
