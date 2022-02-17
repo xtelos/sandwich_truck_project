@@ -4,9 +4,13 @@ methods and then added to paint() in other to be drawn on the JFrame.
  */
 
 import java.awt.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Truck_Map extends Panel
 {
+    public TruckDot truck = new TruckDot();
     /*
     Draws the basic gridlines on the JFrame, which are used to position addresses
      */
@@ -39,11 +43,19 @@ public class Truck_Map extends Panel
 
     }
 
+    public void createTruck()
+    {
+        Location location = new Location(500, 500);
+        truck = new TruckDot(location, location);
+    }
+
     /*
     Method used to control the drawing components on the JFrame
      */
     public void paint(Graphics g) {
         super.paint(g);
         drawLines(g);
+        createTruck();
+        truck.paint(g);
     }
 }
