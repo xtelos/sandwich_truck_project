@@ -1,42 +1,31 @@
 import java.awt.*;
 
-public class TruckDot extends Representations{
+public class ServiceCenterDot extends Representations{
 
     private Location location;
     private Location destination;
-    private boolean hasArrived;
 
-    TruckDot(Location location, Location destination) {
+    ServiceCenterDot(Location location, Location destination) {
         super(location, destination);
         this.location = location;
         this.destination = destination;
 
     }
 
-    TruckDot() {
+    ServiceCenterDot() {
         Location location = new Location();
         this.location = location;
 
     }
 
-    public boolean isArrived(){
-        return hasArrived;
-    }
-
     @Override
     public void update() {
-        if(location.equals(destination))
-            hasArrived = true;
-        else
-        {
-           //code that would make the truck move along the road
-        }
     }
 
     @Override
     public void paint(Graphics g) {
         Color color = g.getColor();
-        g.setColor(Color.RED);
+        g.setColor(Color.BLUE);
         g.fillOval(location.getX() - RADIUS, location.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
 
     }

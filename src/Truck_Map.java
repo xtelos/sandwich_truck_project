@@ -11,6 +11,7 @@ import java.util.ListIterator;
 public class Truck_Map extends Panel
 {
     public TruckDot truck = new TruckDot();
+    public ServiceCenterDot serviceCenter = new ServiceCenterDot();
     /*
     Draws the basic gridlines on the JFrame, which are used to position addresses
      */
@@ -49,6 +50,12 @@ public class Truck_Map extends Panel
         truck = new TruckDot(location, location);
     }
 
+    public void createServiceCenter()
+    {
+        Location location = new Location(500, 500);
+        serviceCenter = new ServiceCenterDot(location, location);
+    }
+
     /*
     Method used to control the drawing components on the JFrame
      */
@@ -56,6 +63,8 @@ public class Truck_Map extends Panel
         super.paint(g);
         drawLines(g);
         createTruck();
+        createServiceCenter();
         truck.paint(g);
+        serviceCenter.paint(g);
     }
 }
