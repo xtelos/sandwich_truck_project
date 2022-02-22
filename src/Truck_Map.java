@@ -53,7 +53,7 @@ public class Truck_Map extends Panel
     public void createServiceCenter()
     {
         Location location = new Location(500, 500);
-        serviceCenter = new ServiceCenterDot(location, location);
+        serviceCenter = new ServiceCenterDot(location);
     }
 
     /*
