@@ -6,6 +6,11 @@ public class TruckDot extends Representations{
     private Location destination;
     private boolean hasArrived;
 
+    /**
+     * creates a truck with a specific location and a target destination to drive to
+     * @param location
+     * @param destination
+     */
     TruckDot(Location location, Location destination) {
         super(location, destination);
         this.location = location;
@@ -13,6 +18,9 @@ public class TruckDot extends Representations{
 
     }
 
+    /**
+     * Constructor without a specific start location
+     */
     TruckDot() {
         Location location = new Location();
         this.location = location;
@@ -23,6 +31,9 @@ public class TruckDot extends Representations{
         return hasArrived;
     }
 
+    /**
+     * when truck is moving, if truck arrives, it stops. If not, update is called until it has arrived
+     */
     @Override
     public void update() {
         if(location.equals(destination))
@@ -33,6 +44,10 @@ public class TruckDot extends Representations{
         }
     }
 
+    /**
+     * paints the truck onto the grid
+     * @param g
+     */
     @Override
     public void paint(Graphics g) {
         Color color = g.getColor();
