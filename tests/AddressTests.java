@@ -33,4 +33,28 @@ public class AddressTests {
         assertEquals("Void", address.getStreet());
     }
 
+    @Test
+    public void testStreetLongerThanOneCharacter() {
+        Address address = new Address(110, "LDR");
+
+        assertEquals(110, address.getHouseNumber());
+        assertEquals("Void", address.getStreet());
+    }
+
+    @Test
+    public void testGoodHouseNumberAndStreetNumber() {
+        Address address = new Address(230, "G");
+
+        assertEquals(230, address.getHouseNumber());
+        assertEquals("G", address.getStreet());
+    }
+
+    @Test
+    public void testHouseWithLowerCaseStreetNumberShouldBeChangedToUpper() {
+        Address address = new Address(110, "f");
+
+        assertEquals(110, address.getHouseNumber());
+        assertEquals("F", address.getStreet());
+    }
+
 }
