@@ -86,6 +86,6 @@ public class Address {
      * Author: Jacob Smith
      */
     private boolean isValidHouseNumber(int houseNumber) {
-        return (houseNumber < 991 && houseNumber > 99 && houseNumber % 2 == 0);
+        return (houseNumber < 991 && houseNumber > 99 && houseNumber % 10 == 0);
     }
 }
