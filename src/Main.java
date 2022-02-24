@@ -10,5 +10,8 @@ public class Main
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setVisible(true);
+
+        AddressBook addressBook = new AddressBook();
+        addressBook.generate(100);
     }
 }
