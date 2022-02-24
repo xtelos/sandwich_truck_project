@@ -3,23 +3,45 @@ public class Location {
         private int x;
         private int y;
 
-        Location() {
+    /**
+     * creates basic location of (0,0)
+     */
+    Location() {
             x = y = 0;
         }
 
-        Location(int x, int y) {
+    /**
+     * creates location based on input coordinates
+     * @param x
+     * @param y
+     */
+    Location(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
-        int getX() {
+    /**
+     * returns x coordinate
+     * @return
+     */
+    int getX() {
             return x;
         }
 
-        int getY() {
+    /**
+     * returns y coordinate
+     * @return
+     */
+    int getY() {
             return y;
         }
 
+    /**
+     * sets destination for object to travel to from its location
+     * @param x
+     * @param y
+     * @return
+     */
         public Location setDestination (int x, int y){
             this.x = x;
             this.y = y;
@@ -27,6 +49,12 @@ public class Location {
             return destination;
         }
 
+    /**
+     * calculates distance between two locations
+     * @param v1
+     * @param v2
+     * @return
+     */
         public static double distance(Location v1, Location v2)
         {
             double result;
