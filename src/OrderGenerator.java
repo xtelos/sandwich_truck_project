@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class AddressBook
+public class OrderGenerator
 {
     private final ArrayList<Address> addressBook;
 
-    public AddressBook() {
+    public OrderGenerator() {
         addressBook = new ArrayList<>(1000);
     }
 
