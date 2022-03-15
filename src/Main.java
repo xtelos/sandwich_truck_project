@@ -11,7 +11,7 @@ public class Main
         frame.setResizable(false);
         frame.setVisible(true);
 
-        AddressBook addressBook = new AddressBook();
-        addressBook.generate(100);
+        OrderGenerator orderGenerator = new OrderGenerator();
+        orderGenerator.generate(100);
     }
 }
