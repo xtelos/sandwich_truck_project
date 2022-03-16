@@ -1,63 +1,33 @@
 import java.awt.*;
 
-public abstract class Representations {
-
-    protected Location location;
-    protected Location destination;
-
-    protected static final int RADIUS = 10;
+public interface Representations {
 
     /**
-     * Constructor with a location and a destination for the representation
-     */
-    Representations(Location location, Location destination) {
-        this.location = location;
-        this.destination = destination;
-
-    }
-
-    /**
-     * Creates a representation with only a location
-     * @param location
-     */
-    Representations(Location location)
-    {
-        this(location, new Location());
-    }
-
-    /**
-     * Method with returns true if truck (location) has arrived at destination
+     * returns turcks x location value
      * @return
      */
-    public boolean hasArrived(){
-        return true;
-    }
+    public int getLocationX();
 
     /**
-     * Constructor for representation demo
-     */
-    Representations()
-    {
-
-    }
-
-    /**
-     * returns turcks location
+     * returns trucks y location value
      * @return
      */
-    public Location getLocation() {
-        return location;
-    }
+    public int getLocationY();
+
+    /**
+     * creates a buffered image
+     */
+    public void createImage();
 
     /**
      * updates representations location on the map
      */
-    public abstract void update();
+    public void update();
 
     /**
      * paints representation on the map
      * @param g
      */
-    public abstract void paint(Graphics g);
+    public void paint(Graphics g);
 
 }

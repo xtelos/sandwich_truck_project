@@ -3,12 +3,6 @@ public class Location {
         private int x;
         private int y;
 
-    /**
-     * creates basic location of (0,0)
-     */
-    Location() {
-            x = y = 0;
-        }
 
     /**
      * creates location based on input coordinates
@@ -55,10 +49,10 @@ public class Location {
      * @param v2
      * @return
      */
-        public static double distance(Location v1, Location v2)
+        public double distance(int v1, int v2)
         {
             double result;
-            result = Math.pow((v1.getX() - v2.getX()), 2) + Math.pow((v1.getY() - v2.getY()), 2);
+            result = Math.pow((v1 - v2), 2) + Math.pow((v1 - v2), 2);
             result = Math.pow(result, 0.5);
             return result;
         }

@@ -1,25 +1,41 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class ServiceCenterDot extends Representations{
+public class ServiceCenterDot implements Representations{
 
     private Location location;
-
-    /**
-     * Constructor with a specific start location within parameter
-     */
-    ServiceCenterDot(Location location) {
-        super(location);
-        this.location = location;
-
-    }
+    BufferedImage image;
 
     /**
      * Constructor without a specific start location
      */
     ServiceCenterDot() {
-        Location location = new Location(500,500);
+        Location location = new Location(490,490);
         this.location = location;
+        //createImage();
+    }
 
+    @Override
+    public int getLocationX() {
+        return 0;
+    }
+
+    @Override
+    public int getLocationY() {
+        return 0;
+    }
+
+    @Override
+    public void createImage() {
+//        try {
+//            image = ImageIO.read(new File("/Users/vitoleone1127/CS234/sandwich_truck_project/src/FoodTruckIcon.jpeg"));
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /**
@@ -34,9 +50,8 @@ public class ServiceCenterDot extends Representations{
      */
     @Override
     public void paint(Graphics g) {
-        Color color = g.getColor();
         g.setColor(Color.BLUE);
-        g.fillOval(location.getX() - RADIUS, location.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
+        g.fillOval(location.getX() - 10, location.getY() - 10, 20, 20);
 
     }
 }
