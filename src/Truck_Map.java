@@ -51,10 +51,14 @@ public class Truck_Map extends Panel
         Location location = new Location(500, 500);
         Location destination1 = new Location(600, 500);
         Location destination2 = new Location(600, 600);
+
         LinkedList<Location> destinations = new LinkedList<>();
         destinations.add(destination1);
         destinations.add(destination2);
-        truck = new TruckDot(location, destinations);
+
+        RouteStrategy strategy = new TimeStrategy();
+
+        truck = new TruckDot(location, destinations, strategy);
         serviceCenter = new ServiceCenterDot();
     }
 

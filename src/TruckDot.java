@@ -17,7 +17,7 @@ public class TruckDot extends JPanel implements Representations {
      * @param location
      * @param destinations
      */
-    TruckDot(Location location, LinkedList<Location> destinations) {
+    TruckDot(Location location, LinkedList<Location> destinations, RouteStrategy strategy) {
         this.location = location;
         this.destinations = destinations;
         createImage();
@@ -40,7 +40,7 @@ public class TruckDot extends JPanel implements Representations {
     @Override
     public void createImage() {
         try {
-            image = ImageIO.read(new File("/Users/vitoleone1127/CS234/sandwich_truck_project/src/FoodTruckIcon.jpeg"));
+            image = ImageIO.read(new File("src/FoodTruckIcon.jpeg"));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class TruckDot extends JPanel implements Representations {
     }
 
     /**
-     * when truck is moving, if truck arrives, it stops. If not, update is called until it has arrived
+     * Makes truck Move. if truck arrives, it stops. If not, update is called until it has arrived
      */
     @Override
     public void update() {
@@ -85,9 +85,6 @@ public class TruckDot extends JPanel implements Representations {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image,location.getX()-10,location.getY()-10,20,20,null);
-
-//        g.setColor(Color.RED);
-//        g.fillOval(location.getX() - RADIUS, location.getY() - RADIUS, RADIUS * 2, RADIUS * 2);
     }
 }
 
