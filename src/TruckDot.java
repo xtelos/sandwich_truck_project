@@ -110,9 +110,7 @@ public class TruckDot extends JPanel implements Representations {
                     int locationDifference = location.getY() % 100;
                     location = new Location(location.getX(), location.getY()+locationDifference);
                 }
-
             }
-
         }
     }
 
