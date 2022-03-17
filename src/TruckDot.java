@@ -113,7 +113,6 @@ public class TruckDot extends JPanel implements Representations {
         }
     }
 
-
     /**
      * paints the truck onto the grid
      * @param g
