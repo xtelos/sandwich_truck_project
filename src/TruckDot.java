@@ -100,7 +100,6 @@ public class TruckDot extends JPanel implements Representations {
                 }
 
             }
-
             else if (currentDestination.getX() < location.getX())
             {
                 if (location.getY() % 100 == 0)
