@@ -59,19 +59,59 @@ public class TruckDot extends JPanel implements Representations {
             this.update();
         }
         else {
-            if(location.getY() == currentDestination.getY())
-                location = new Location(location.getX()+20, location.getY());
-            else
-                location = new Location(location.getX(), location.getY()+20);
+//            if(location.getY() == currentDestination.getY())
+//                location = new Location(location.getX()+20, location.getY());
+//            else
+//                location = new Location(location.getX(), location.getY()+20);
             //test code that to make the truck move along the road
 
-            //TODO: right turns only:
-                //if destination.getX() < location.getX() && if destination.getY() >= location.getY()
-                    //find next intersection and go right
-                //if destination.getX() > location.getX() && if destination.getY() < location.getY()
-                    //go to 1 intersection past, and go right 3 times
-                //if destination.getX() < location.getX() && if destination.getY() < location.getY()
-                    //find next intersection and go right 2 times, get to x intersection, and then travel to y
+            if (currentDestination.getY() > location.getY())
+            {
+                if (location.getX() % 100 == 0)
+                    location = new Location(location.getX(), location.getY()+20);
+                else
+                {
+                    int locationDifference = location.getX() % 100;
+                    location = new Location(location.getX()+locationDifference, location.getY());
+                }
+
+            }
+
+            else if (currentDestination.getY() < location.getY())
+            {
+                if (location.getX() % 100 == 0)
+                    location = new Location(location.getX(), location.getY()-20);
+                else
+                {
+                    int locationDifference = location.getX() % 100;
+                    location = new Location(location.getX()+locationDifference, location.getY());
+                }
+
+            }
+
+            else if (currentDestination.getX() > location.getX())
+            {
+                if (location.getY() % 100 == 0)
+                    location = new Location(location.getX()+20, location.getY());
+                else
+                {
+                    int locationDifference = location.getY() % 100;
+                    location = new Location(location.getX(), location.getY()+locationDifference);
+                }
+
+            }
+
+            else if (currentDestination.getX() < location.getX())
+            {
+                if (location.getY() % 100 == 0)
+                    location = new Location(location.getX()-20, location.getY());
+                else
+                {
+                    int locationDifference = location.getY() % 100;
+                    location = new Location(location.getX(), location.getY()+locationDifference);
+                }
+
+            }
 
         }
     }
