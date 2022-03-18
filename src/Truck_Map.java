@@ -4,7 +4,9 @@ methods and then added to paint() in other to be drawn on the JFrame.
  */
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class Truck_Map extends Panel
 {
@@ -49,14 +51,25 @@ public class Truck_Map extends Panel
     public void createRepresentations()
     {
         Location location = new Location(500, 500);
-        Location destination1 = new Location(600, 500);
-        Location destination2 = new Location(600, 600);
 
-        LinkedList<Location> destinations = new LinkedList<>();
-        destinations.add(destination1);
-        destinations.add(destination2);
+        // Just examples, replace with actual addresses for houses
+//        Location destination1 = new Location(600, 500);
+//        Location destination2 = new Location(600, 600);
+//
+//        LinkedList<Location> destinations = new LinkedList<>();
+//        destinations.add(destination1);
+//        destinations.add(destination2);
 
+
+        // call readBatchFile() and assign to ArrayList orders
+        ArrayList<Order> orders = readBatchFile();
+
+        // instantiate new strategy (can choose to either prioritize distance or the time of the order)
         RouteStrategy strategy = new TimeStrategy();
+        PriorityQueue<Order> queue = strategy.createRoute(orders);
+
+        // call convertOrdersToLocations(orders) and assign to destinations
+        LinkedList<Location> destinations = convertOrdersToLocations(queue);
 
         truck = new TruckDot(location, destinations, strategy);
         serviceCenter = new ServiceCenterDot();
@@ -79,4 +92,53 @@ public class Truck_Map extends Panel
         serviceCenter.paint(g);
         }
 
+
+    /**
+     * Converts each order's address into Locations that the JFrame is able to use
+     * @param orders: PriorityQueue of the orders
+     * @return: LinkedList of destinations for the JFrame to use
+     *
+     * Author: Jacob Smith
+     */
+    private LinkedList<Location> convertOrdersToLocations(PriorityQueue<Order> orders) {
+        LinkedList<Location> destinations = new LinkedList<>();
+        return destinations;
     }
+
+    /**
+     * Reads the batchfile containing the 100 orders and returns them in a collection
+     * @return: ArrayList<Order> of all the orders read from file in no order
+     *
+     * Author: Jacob Smith
+     */
+    private ArrayList<Order> readBatchFile() {
+        ArrayList<Order> orders = new ArrayList<>();
+        try {
+            File file = new File("orders.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] data = line.split(",");
+
+                // Creates new Address object
+                String addressInfo = data[0];
+                int houseNumber = Integer.parseInt(addressInfo.substring(0, 3));
+                String street = addressInfo.substring(4,5);
+                Address address = new Address(houseNumber, street);
+
+                // Creates new TimeStamp object
+                String[] timeStampInfo = data[1].split(":");
+                int hours = Integer.parseInt(timeStampInfo[0]);
+                int minutes = Integer.parseInt(timeStampInfo[1]);
+                TimeStamp timeStamp = new TimeStamp(hours, minutes);
+
+                Order order = new Order(address, timeStamp);
+                orders.add(order);
+            }
+        } catch (FileNotFoundException exception) {
+            System.out.println("Couldn't read file");
+        }
+        return orders;
+    }
+}

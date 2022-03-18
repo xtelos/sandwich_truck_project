@@ -70,7 +70,7 @@
 500 4 Street,7:38
 910 8 Street,6:42
 790 7 Street,2:34
-890 5 Street 2:28
+890 5 Street,2:28
 800 8 Street,3:40
 830 4 Street,7:33
 820 7 Street,4:59
