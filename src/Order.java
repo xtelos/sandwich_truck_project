@@ -8,6 +8,14 @@ public class Order {
         this.timeStamp = timeStamp;
     }
 
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public TimeStamp getTimeStamp() {
+        return this.timeStamp;
+    }
+
     @Override
     public String toString() {
         return address.toString() + "," + timeStamp.toString();

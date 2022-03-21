@@ -10,6 +10,7 @@ public class DistanceStrategy implements RouteStrategy{
      */
     @Override
     public PriorityQueue<Order> createRoute(Collection<Order> orders) {
-        return null;
+        PriorityQueue<Order> queue = new PriorityQueue<>();
+        return queue;
     }
 }

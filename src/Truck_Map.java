@@ -65,7 +65,7 @@ public class Truck_Map extends Panel
         ArrayList<Order> orders = readBatchFile();
 
         // instantiate new strategy (can choose to either prioritize distance or the time of the order)
-        RouteStrategy strategy = new TimeStrategy();
+        RouteStrategy strategy = new DistanceStrategy();
         PriorityQueue<Order> queue = strategy.createRoute(orders);
 
         // call convertOrdersToLocations(orders) and assign to destinations
@@ -102,6 +102,25 @@ public class Truck_Map extends Panel
      */
     private LinkedList<Location> convertOrdersToLocations(PriorityQueue<Order> orders) {
         LinkedList<Location> destinations = new LinkedList<>();
+        for (int i = 0; i < orders.size(); i++) {
+            Order order = orders.poll();
+            Address address = order.getAddress();
+            String street = address.getStreet();
+            int houseNumber = address.getHouseNumber();
+            try {
+                int convertedStreet = Integer.parseInt(street);
+                convertedStreet *= 100;
+                Location location = new Location(houseNumber, convertedStreet);
+                destinations.add(location);
+
+            }
+            catch (NumberFormatException e) {
+                int convertedStreet = convertStreetToInteger(street);
+                Location location = new Location(convertedStreet, houseNumber);
+                destinations.add(location);
+            }
+
+        }
         return destinations;
     }
 
@@ -140,5 +159,20 @@ public class Truck_Map extends Panel
             System.out.println("Couldn't read file");
         }
         return orders;
+    }
+
+    private int convertStreetToInteger(String street) {
+        HashMap<String, Integer> conversions = new HashMap<>();
+        conversions.put("A", 100);
+        conversions.put("B", 200);
+        conversions.put("C", 300);
+        conversions.put("D", 400);
+        conversions.put("E", 500);
+        conversions.put("F", 600);
+        conversions.put("G", 700);
+        conversions.put("H", 800);
+        conversions.put("J", 900);
+
+        return conversions.get(street);
     }
 }
