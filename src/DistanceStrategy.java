@@ -1,3 +1,9 @@
+/*
+Class to implement the strategy to deliver orders that are closest to the service center
+
+Author: Jacob Smith
+ */
+
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -10,7 +16,7 @@ public class DistanceStrategy implements RouteStrategy{
     }
 
     /**
-     * sorts linked list destinations by distance priority
+     * sorts ArrayList<Order> of destinations by distance priority
      * @param orders
      */
     @Override

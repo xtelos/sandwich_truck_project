@@ -1,3 +1,10 @@
+/*
+Class to represent an order. It has two data members that is the Address for the order and the TimeStamp
+for when the order was placed. Can also be converted into a Location object
+
+Author: Jacob Smith
+ */
+
 import java.util.HashMap;
 
 public class Order {
@@ -10,10 +17,18 @@ public class Order {
         this.timeStamp = timeStamp;
     }
 
+    /**
+     * Gives the address of the order
+     * @return: Address for order
+     */
     public Address getAddress() {
         return this.address;
     }
 
+    /**
+     * Gives the time the order was made
+     * @return: TimeStamp for order
+     */
     public TimeStamp getTimeStamp() {
         return this.timeStamp;
     }
@@ -47,6 +62,11 @@ public class Order {
         return location;
     }
 
+    /**
+     * Converts a street with a letter as the name into an integer for the JFrame to be able to use
+     * @param street: String of the street name
+     * @return: integer value associated with the street name
+     */
     private int convertStreetToInteger(String street) {
         HashMap<String, Integer> conversions = new HashMap<>();
         conversions.put("A", 100);
