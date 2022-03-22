@@ -1,5 +1,5 @@
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
 import java.util.PriorityQueue;
 
 public class TimeStrategy implements RouteStrategy{
@@ -9,7 +9,9 @@ public class TimeStrategy implements RouteStrategy{
      * @param orders
      */
     @Override
-    public PriorityQueue<Order> createRoute(Collection<Order> orders) {
+    public PriorityQueue<Location> createRoute(ArrayList<Order> orders) {
+        // instantiate PriorityQueue<Location>(TimeStampComparator) queue
+        // queue.add(order.convertToLocation());
         return null;
     }
 }

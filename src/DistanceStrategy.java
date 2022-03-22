@@ -1,16 +1,23 @@
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class DistanceStrategy implements RouteStrategy{
+
+    private PriorityQueue<Location> queue;
+
+    public DistanceStrategy() {
+        queue = new PriorityQueue<>(new DistanceComparator());
+    }
 
     /**
      * sorts linked list destinations by distance priority
      * @param orders
      */
     @Override
-    public PriorityQueue<Order> createRoute(Collection<Order> orders) {
-        PriorityQueue<Order> queue = new PriorityQueue<>();
+    public PriorityQueue<Location> createRoute(ArrayList<Order> orders) {
+        for (int i = 0; i < orders.size(); i++) {
+            queue.add(orders.get(i).convertToLocation());
+        }
         return queue;
     }
 }
