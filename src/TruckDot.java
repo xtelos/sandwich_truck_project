@@ -63,7 +63,7 @@ public class TruckDot extends JPanel implements Representations {
 //                location = new Location(location.getX()+20, location.getY());
 //            else
 //                location = new Location(location.getX(), location.getY()+20);
-            //test code that to make the truck move along the road
+//            test code that to make the truck move along the road
 
             if (currentDestination.getY() > location.getY())
             {
