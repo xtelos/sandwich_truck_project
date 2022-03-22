@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class Truck_Map extends Panel
-{
+public class Truck_Map extends Panel {
     public TruckDot truck;
     public ServiceCenterDot serviceCenter;
+
     /*
     Draws the basic gridlines on the JFrame, which are used to position addresses
      */
@@ -48,8 +48,7 @@ public class Truck_Map extends Panel
     /**
      * creates the service center and a basic truck to check if movement works
      */
-    public void createRepresentations()
-    {
+    public void createRepresentations() {
         Location location = new Location(500, 500);
 
         // Just examples, replace with actual addresses for houses
@@ -66,10 +65,14 @@ public class Truck_Map extends Panel
 
         // instantiate new strategy (can choose to either prioritize distance or the time of the order)
         RouteStrategy strategy = new DistanceStrategy();
-        PriorityQueue<Order> queue = strategy.createRoute(orders);
+        PriorityQueue<Location> queue = strategy.createRoute(orders);
+
+        LinkedList<Location> destinations = new LinkedList<>();
+        for (int i = 0; i < queue.size(); i++) {
+            destinations.add(queue.poll());
+        }
 
         // call convertOrdersToLocations(orders) and assign to destinations
-        LinkedList<Location> destinations = convertOrdersToLocations(queue);
 
         truck = new TruckDot(location, destinations, strategy);
         serviceCenter = new ServiceCenterDot();
@@ -78,7 +81,7 @@ public class Truck_Map extends Panel
     /**
      * Calls TruckDot's update so that TruckSim does not need to deal with the TruckDot class
      */
-    public void update(){
+    public void update() {
         truck.update();
     }
 
@@ -90,44 +93,14 @@ public class Truck_Map extends Panel
         drawLines(g);
         truck.paintComponent(g);
         serviceCenter.paint(g);
-        }
-
-
-    /**
-     * Converts each order's address into Locations that the JFrame is able to use
-     * @param orders: PriorityQueue of the orders
-     * @return: LinkedList of destinations for the JFrame to use
-     *
-     * Author: Jacob Smith
-     */
-    private LinkedList<Location> convertOrdersToLocations(PriorityQueue<Order> orders) {
-        LinkedList<Location> destinations = new LinkedList<>();
-        for (int i = 0; i < orders.size(); i++) {
-            Order order = orders.poll();
-            Address address = order.getAddress();
-            String street = address.getStreet();
-            int houseNumber = address.getHouseNumber();
-            try {
-                int convertedStreet = Integer.parseInt(street);
-                convertedStreet *= 100;
-                Location location = new Location(houseNumber, convertedStreet);
-                destinations.add(location);
-
-            }
-            catch (NumberFormatException e) {
-                int convertedStreet = convertStreetToInteger(street);
-                Location location = new Location(convertedStreet, houseNumber);
-                destinations.add(location);
-            }
-
-        }
-        return destinations;
     }
+
 
     /**
      * Reads the batchfile containing the 100 orders and returns them in a collection
-     * @return: ArrayList<Order> of all the orders read from file in no order
      *
+     * @return: ArrayList<Order> of all the orders read from file in no order
+     * <p>
      * Author: Jacob Smith
      */
     private ArrayList<Order> readBatchFile() {
@@ -143,7 +116,7 @@ public class Truck_Map extends Panel
                 // Creates new Address object
                 String addressInfo = data[0];
                 int houseNumber = Integer.parseInt(addressInfo.substring(0, 3));
-                String street = addressInfo.substring(4,5);
+                String street = addressInfo.substring(4, 5);
                 Address address = new Address(houseNumber, street);
 
                 // Creates new TimeStamp object
@@ -159,20 +132,5 @@ public class Truck_Map extends Panel
             System.out.println("Couldn't read file");
         }
         return orders;
-    }
-
-    private int convertStreetToInteger(String street) {
-        HashMap<String, Integer> conversions = new HashMap<>();
-        conversions.put("A", 100);
-        conversions.put("B", 200);
-        conversions.put("C", 300);
-        conversions.put("D", 400);
-        conversions.put("E", 500);
-        conversions.put("F", 600);
-        conversions.put("G", 700);
-        conversions.put("H", 800);
-        conversions.put("J", 900);
-
-        return conversions.get(street);
     }
 }
