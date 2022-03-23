@@ -96,6 +96,10 @@ public class Truck_Map extends Panel {
     }
 
 
+    public boolean truckHasOrders(){
+        return truck.hasDestinations();
+    }
+
     /**
      * Reads the batchfile containing the 100 orders and returns them in a collection
      *

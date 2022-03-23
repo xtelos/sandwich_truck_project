@@ -11,6 +11,7 @@ public class TruckDot extends JPanel implements Representations {
     public Location location;
     public LinkedList<Location> destinations;
     public BufferedImage image;
+    public RouteStrategy strategy;
 
     /**
      * creates a truck with a specific location and a linkedlist of destinations to drive to
@@ -20,6 +21,7 @@ public class TruckDot extends JPanel implements Representations {
     TruckDot(Location location, LinkedList<Location> destinations, RouteStrategy strategy) {
         this.location = location;
         this.destinations = destinations;
+        this.strategy = strategy;
         createImage();
     }
 
@@ -46,6 +48,11 @@ public class TruckDot extends JPanel implements Representations {
             e.printStackTrace();
         }
 
+    }
+
+
+    public boolean hasDestinations(){
+        return !destinations.isEmpty();
     }
 
     /**
