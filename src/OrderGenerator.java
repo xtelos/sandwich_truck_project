@@ -33,10 +33,7 @@ public class OrderGenerator
             if (houseNum < 100) {
                 houseNum *= 10;
             }
-            Address address = new Address(houseNum, street);
-            addressBook.add(address);
-            String timeStamp = generateTimeStamp();
-            writeToFile(address, timeStamp);
+            writeAddressToFile(street, houseNum);
         }
     }
 
@@ -56,11 +53,15 @@ public class OrderGenerator
             if (houseNum < 100) {
                 houseNum *= 10;
             }
-            Address address = new Address(houseNum, street);
-            addressBook.add(address);
-            String timeStamp = generateTimeStamp();
-            writeToFile(address, timeStamp);
+            writeAddressToFile(street, houseNum);
         }
+    }
+
+    private void writeAddressToFile(String street, int houseNum) {
+        Address address = new Address(houseNum, street);
+        addressBook.add(address);
+        String timeStamp = generateTimeStamp();
+        writeToFile(address, timeStamp);
     }
 
     /**
@@ -72,8 +73,7 @@ public class OrderGenerator
         Random random = new Random();
         int hours = random.nextInt(11) + 1;
         int minutes = random.nextInt(60);
-        String timestamp = hours + ":" + minutes;
-        return timestamp;
+        return hours + ":" + minutes;
     }
 
     /**

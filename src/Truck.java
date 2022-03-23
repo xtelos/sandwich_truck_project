@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class TruckDot extends JPanel implements Representations {
+public class Truck extends JPanel implements Representations {
 
     public Location location;
     public LinkedList<Location> destinations;
@@ -18,7 +18,7 @@ public class TruckDot extends JPanel implements Representations {
      * @param location
      * @param destinations
      */
-    TruckDot(Location location, LinkedList<Location> destinations, RouteStrategy strategy) {
+    Truck(Location location, LinkedList<Location> destinations, RouteStrategy strategy) {
         this.location = location;
         this.destinations = destinations;
         this.strategy = strategy;
@@ -60,6 +60,10 @@ public class TruckDot extends JPanel implements Representations {
      */
     @Override
     public void update() {
+
+        int locationDifferenceX = location.getX() % 100;
+        int locationDifferenceY = location.getY() % 100;
+
         Location currentDestination = destinations.getFirst();
         if(location.equals(currentDestination)) {
             destinations.removeFirst();
@@ -75,11 +79,10 @@ public class TruckDot extends JPanel implements Representations {
             if (currentDestination.getY() > location.getY())
             {
                 if (location.getX() % 100 == 0)
-                    location = new Location(location.getX(), location.getY()+20);
+                    location.setDestination(location.getX(), location.getY()+20);
                 else
                 {
-                    int locationDifference = location.getX() % 100;
-                    location = new Location(location.getX()+locationDifference, location.getY());
+                    location.setDestination(location.getX()+locationDifferenceX, location.getY());
                 }
 
             }
@@ -87,11 +90,10 @@ public class TruckDot extends JPanel implements Representations {
             else if (currentDestination.getY() < location.getY())
             {
                 if (location.getX() % 100 == 0)
-                    location = new Location(location.getX(), location.getY()-20);
+                    location.setDestination(location.getX(), location.getY()-20);
                 else
                 {
-                    int locationDifference = location.getX() % 100;
-                    location = new Location(location.getX()+locationDifference, location.getY());
+                    location.setDestination(location.getX()+locationDifferenceX, location.getY());
                 }
 
             }
@@ -99,22 +101,20 @@ public class TruckDot extends JPanel implements Representations {
             else if (currentDestination.getX() > location.getX())
             {
                 if (location.getY() % 100 == 0)
-                    location = new Location(location.getX()+20, location.getY());
+                    location.setDestination(location.getX()+20, location.getY());
                 else
                 {
-                    int locationDifference = location.getY() % 100;
-                    location = new Location(location.getX(), location.getY()+locationDifference);
+                    location.setDestination(location.getX(), location.getY()+locationDifferenceY);
                 }
 
             }
             else if (currentDestination.getX() < location.getX())
             {
                 if (location.getY() % 100 == 0)
-                    location = new Location(location.getX()-20, location.getY());
+                    location.setDestination(location.getX()-20, location.getY());
                 else
                 {
-                    int locationDifference = location.getY() % 100;
-                    location = new Location(location.getX(), location.getY()+locationDifference);
+                    location.setDestination(location.getX(), location.getY()+locationDifferenceY);
                 }
             }
         }

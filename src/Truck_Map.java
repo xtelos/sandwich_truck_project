@@ -9,56 +9,28 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Truck_Map extends Panel {
-    public TruckDot truck;
-    public ServiceCenterDot serviceCenter;
+    public Truck truck;
+    public ServiceCenter serviceCenter;
 
     /*
     Draws the basic gridlines on the JFrame, which are used to position addresses
      */
     void drawLines(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
 
         // Vertical Streets
-        g2d.drawLine(100, 0, 100, 1000);
-        g2d.drawLine(200, 0, 200, 1000);
-        g2d.drawLine(300, 0, 300, 1000);
-        g2d.drawLine(400, 0, 400, 1000);
-        g2d.drawLine(500, 0, 500, 1000);
-        g2d.drawLine(600, 0, 600, 1000);
-        g2d.drawLine(700, 0, 700, 1000);
-        g2d.drawLine(800, 0, 800, 1000);
-        g2d.drawLine(900, 0, 900, 1000);
-        g2d.drawLine(1000, 0, 1000, 1000);
+        for(int x = 1; x <= 1001; x = x + 100)
+            g.drawLine(x, 0, x, 1000);
 
         // Horizontal Streets
-        g2d.drawLine(0, 100, 1000, 100);
-        g2d.drawLine(0, 200, 1000, 200);
-        g2d.drawLine(0, 300, 1000, 300);
-        g2d.drawLine(0, 400, 1000, 400);
-        g2d.drawLine(0, 500, 1000, 500);
-        g2d.drawLine(0, 600, 1000, 600);
-        g2d.drawLine(0, 700, 1000, 700);
-        g2d.drawLine(0, 800, 1000, 800);
-        g2d.drawLine(0, 900, 1000, 900);
-        g2d.drawLine(0, 1000, 1000, 1000);
-
+        for(int y = 0; y <= 1000; y = y + 100)
+            g.drawLine(0, y, 1000, y);
     }
-
 
     /**
      * creates the service center and a basic truck to check if movement works
      */
     public void createRepresentations() {
         Location location = new Location(500, 500);
-
-        // Just examples, replace with actual addresses for houses
-//        Location destination1 = new Location(600, 500);
-//        Location destination2 = new Location(600, 600);
-//
-//        LinkedList<Location> destinations = new LinkedList<>();
-//        destinations.add(destination1);
-//        destinations.add(destination2);
-
 
         // call readBatchFile() and assign to ArrayList orders
         ArrayList<Order> orders = readBatchFile();
@@ -74,8 +46,8 @@ public class Truck_Map extends Panel {
 
         // call convertOrdersToLocations(orders) and assign to destinations
 
-        truck = new TruckDot(location, destinations, strategy);
-        serviceCenter = new ServiceCenterDot();
+        truck = new Truck(location, destinations, strategy);
+        serviceCenter = new ServiceCenter();
     }
 
     /**
@@ -92,7 +64,7 @@ public class Truck_Map extends Panel {
         super.paint(g);
         drawLines(g);
         truck.paintComponent(g);
-        serviceCenter.paint(g);
+        serviceCenter.paintComponent(g);
     }
 
 
@@ -117,17 +89,8 @@ public class Truck_Map extends Panel {
                 String line = scanner.nextLine();
                 String[] data = line.split(",");
 
-                // Creates new Address object
-                String addressInfo = data[0];
-                int houseNumber = Integer.parseInt(addressInfo.substring(0, 3));
-                String street = addressInfo.substring(4, 5);
-                Address address = new Address(houseNumber, street);
-
-                // Creates new TimeStamp object
-                String[] timeStampInfo = data[1].split(":");
-                int hours = Integer.parseInt(timeStampInfo[0]);
-                int minutes = Integer.parseInt(timeStampInfo[1]);
-                TimeStamp timeStamp = new TimeStamp(hours, minutes);
+                Address address = getAddress(data[0]);
+                TimeStamp timeStamp = getTimeStamp(data[1]);
 
                 Order order = new Order(address, timeStamp);
                 orders.add(order);
@@ -136,5 +99,28 @@ public class Truck_Map extends Panel {
             System.out.println("Couldn't read file");
         }
         return orders;
+    }
+
+    /**
+     * creates a time stamp object
+     * @param datum
+     * @return
+     */
+    private TimeStamp getTimeStamp(String datum) {
+        String[] timeStampInfo = datum.split(":");
+        int hours = Integer.parseInt(timeStampInfo[0]);
+        int minutes = Integer.parseInt(timeStampInfo[1]);
+        return new TimeStamp(hours, minutes);
+    }
+
+    /**
+     * creates a address object
+     * @param addressInfo
+     * @return
+     */
+    private Address getAddress(String addressInfo) {
+        int houseNumber = Integer.parseInt(addressInfo.substring(0, 3));
+        String street = addressInfo.substring(4, 5);
+        return new Address(houseNumber, street);
     }
 }

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 public interface Representations {
@@ -28,6 +29,6 @@ public interface Representations {
      * paints representation on the map
      * @param g
      */
-    public void paint(Graphics g);
+    public void paintComponent(Graphics g);
 
 }

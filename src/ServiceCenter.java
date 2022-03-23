@@ -1,41 +1,41 @@
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ServiceCenterDot implements Representations{
+public class ServiceCenter extends JPanel implements Representations{
 
     private Location location;
-    BufferedImage image;
+    public BufferedImage image;
 
     /**
      * Constructor without a specific start location
      */
-    ServiceCenterDot() {
-        Location location = new Location(490,490);
-        this.location = location;
-        //createImage();
+    ServiceCenter() {
+        this.location = new Location(490,490);
+        createImage();
     }
 
     @Override
     public int getLocationX() {
-        return 0;
+        return location.getX();
     }
 
     @Override
     public int getLocationY() {
-        return 0;
+        return location.getY();
     }
 
     @Override
     public void createImage() {
-//        try {
-//            image = ImageIO.read(new File("/Users/vitoleone1127/CS234/sandwich_truck_project/src/FoodTruckIcon.jpeg"));
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            image = ImageIO.read(new File("src/ServiceCenter.jpeg"));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -49,9 +49,9 @@ public class ServiceCenterDot implements Representations{
      * Places the service center on the map as a blue dot
      */
     @Override
-    public void paint(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillOval(location.getX() - 10, location.getY() - 10, 20, 20);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image,location.getX()-10,location.getY()-10,20,20,null);
 
     }
 }

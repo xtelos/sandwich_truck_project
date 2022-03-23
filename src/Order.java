@@ -46,17 +46,17 @@ public class Order {
      */
     public Location convertToLocation() {
         Location location;
+        int convertedStreet;
 
         String street = address.getStreet();
         int houseNumber = address.getHouseNumber();
 
         try {
-            int convertedStreet = Integer.parseInt(street);
-            convertedStreet *= 100;
+            convertedStreet = Integer.parseInt(street) * 100;
             location = new Location(houseNumber, convertedStreet);
         }
         catch (NumberFormatException e) {
-            int convertedStreet = convertStreetToInteger(street);
+            convertedStreet = convertStreetToInteger(street);
             location = new Location(convertedStreet, houseNumber);
         }
         return location;
