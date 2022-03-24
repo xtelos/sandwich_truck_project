@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class TruckSim extends JFrame {
 
-    private Truck_Map truckMap;
+    private TruckMap truckMap;
 
     /**
      * creates JFrame of neighborhood with input length and with of window
@@ -12,7 +12,7 @@ public class TruckSim extends JFrame {
     TruckSim(int length, int width){
 
         setSize(length,width);
-        truckMap = new Truck_Map();
+        truckMap = new TruckMap();
 
         setContentPane(truckMap);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

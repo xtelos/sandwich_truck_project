@@ -62,8 +62,8 @@ public class Truck extends JPanel implements Representations {
     public void update() {
         Location currentDestination = destinations.getFirst();
 
-        int locationDifferenceX = currentDestination.getX() % 100;
-        int locationDifferenceY = currentDestination.getY() % 100;
+        boolean canMoveUpOrDown = location.getX() % 100 == 0;
+        boolean canMoveLeftOrRight = location.getY() % 100 == 0;
 
         if(location.equals(currentDestination)) {
             destinations.removeFirst();
@@ -76,52 +76,88 @@ public class Truck extends JPanel implements Representations {
 //                location = new Location(location.getX(), location.getY()+20);
 //            test code that to make the truck move along the road
 
-            if (currentDestination.getY() > location.getY())
-            {
-                if (location.getX() % 100 == 0 && location.getY() % 100 == 0)
-                    location.setDestination(location.getX(), location.getY()+1);
-                else
-                {
-                    location.setDestination(location.getX(), location.getY()+1);
-                    destinations.addFirst(currentDestination);
-                }
+            if (currentDestination.getY() > location.getY() && canMoveUpOrDown)
+                truckMoveDown();
 
+            else if(currentDestination.getY() > location.getY() && !canMoveUpOrDown)
+            {
+                if (location.getClosestIntersectionX() > location.getX())
+                    truckMoveRight();
+                else
+                    truckMoveLeft();
             }
 
-            else if (currentDestination.getY() < location.getY())
-            {
-                if (location.getX() % 100 == 0  && location.getY() % 100 == 0)
-                    location.setDestination(location.getX(), location.getY()-1);
-                else
-                {
-                    location.setDestination(location.getX(), location.getY()-1);
-                    destinations.addFirst(currentDestination);
-                }
 
+            else if (currentDestination.getY() < location.getY() && canMoveUpOrDown)
+                truckMoveUp();
+
+            else if(currentDestination.getY() < location.getY() && !canMoveUpOrDown)
+            {
+                if (location.getClosestIntersectionX() > location.getX())
+                    truckMoveRight();
+                else
+                    truckMoveLeft();
             }
 
-            else if (currentDestination.getX() > location.getX())
-            {
-                if (location.getX() % 100 == 0  && location.getY() % 100 == 0)
-                    location.setDestination(location.getX()+1, location.getY());
-                else
-                {
-                    location.setDestination(location.getX()+1, location.getY());
-                    destinations.addFirst(currentDestination);
-                }
 
-            }
-            else if (currentDestination.getX() < location.getX())
+            else if (currentDestination.getX() > location.getX() && canMoveLeftOrRight)
+                truckMoveRight();
+
+            else if(currentDestination.getX() > location.getX() && !canMoveUpOrDown)
             {
-                if (location.getX() % 100 == 0 && location.getY() % 100 == 0)
-                    location.setDestination(location.getX()-1, location.getY());
+                if (location.getClosestIntersectionY() > location.getX())
+                    truckMoveDown();
                 else
-                {
-                    location.setDestination(location.getX()-1, location.getY());
-                    destinations.addFirst(currentDestination);
-                }
+                    truckMoveUp();
+            }
+
+
+            else if (currentDestination.getX() < location.getX() && canMoveLeftOrRight)
+                truckMoveLeft();
+
+            else if(currentDestination.getX() < location.getX() && !canMoveUpOrDown)
+            {
+                if (location.getClosestIntersectionX() > location.getX())
+                    truckMoveDown();
+                else
+                    truckMoveUp();
             }
         }
+    }
+
+    /**
+     * moves truck up
+     */
+    private void truckMoveUp(){
+        location.setLocation(location.getX(), location.getY()-1);
+    }
+
+    /**
+     * moves truck down
+     */
+    private void truckMoveDown(){
+        location.setLocation(location.getX(), location.getY()+1);
+    }
+
+    /**
+     * moves truck left
+     */
+    private void truckMoveLeft(){
+        location.setLocation(location.getX()-1, location.getY());
+    }
+
+    /**
+     * moves truck right
+     */
+    private void truckMoveRight(){
+        location.setLocation(location.getX()+1, location.getY());
+    }
+
+    /**
+     * truck moves but can only make right turns
+     */
+    public void updateRightOnly(){
+
     }
 
     /**

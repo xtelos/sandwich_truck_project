@@ -36,11 +36,10 @@ public class Location {
      * @param y
      * @return
      */
-        public Location setDestination (int x, int y){
+        public Location setLocation(int x, int y){
             this.x = x;
             this.y = y;
-            Location destination = new Location(this.x, this.y);
-            return destination;
+            return new Location(this.x, this.y);
         }
 
     /**
@@ -75,4 +74,18 @@ public class Location {
                     ", y=" + y +
                     '}';
         }
+
+    /**
+     * returns the x value of the closest intersecrtion's x value
+     * @return
+     */
+    public int getClosestIntersectionX() {
     }
+
+    /**
+     * returns the y value of the closest intersecrtion's x value
+     * @return
+     */
+    public int getClosestIntersectionY() {
+    }
+}

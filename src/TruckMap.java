@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-public class Truck_Map extends Panel {
+public class TruckMap extends Panel {
     public Truck truck;
     public ServiceCenter serviceCenter;
 
@@ -86,19 +86,28 @@ public class Truck_Map extends Panel {
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] data = line.split(",");
-
-                Address address = getAddress(data[0]);
-                TimeStamp timeStamp = getTimeStamp(data[1]);
-
-                Order order = new Order(address, timeStamp);
-                orders.add(order);
+                addOrder(orders, scanner);
             }
         } catch (FileNotFoundException exception) {
             System.out.println("Couldn't read file");
         }
         return orders;
+    }
+
+    /**
+     * reads file, gets address and time stamp, then adds the order to the order list
+     * @param orders
+     * @param scanner
+     */
+    private void addOrder(ArrayList<Order> orders, Scanner scanner) {
+        String line = scanner.nextLine();
+        String[] data = line.split(",");
+
+        Address address = getAddress(data[0]);
+        TimeStamp timeStamp = getTimeStamp(data[1]);
+
+        Order order = new Order(address, timeStamp);
+        orders.add(order);
     }
 
     /**
