@@ -51,6 +51,10 @@ public class Truck extends JPanel implements Representations {
     }
 
 
+    /**
+     * returns true if destinations is not empty
+     * @return
+     */
     public boolean hasDestinations(){
         return !destinations.isEmpty();
     }
@@ -105,7 +109,7 @@ public class Truck extends JPanel implements Representations {
 
             else if(currentDestination.getX() > location.getX() && !canMoveUpOrDown)
             {
-                if (location.getClosestIntersectionY() > location.getX())
+                if (location.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();
@@ -117,7 +121,7 @@ public class Truck extends JPanel implements Representations {
 
             else if(currentDestination.getX() < location.getX() && !canMoveUpOrDown)
             {
-                if (location.getClosestIntersectionX() > location.getX())
+                if (location.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();

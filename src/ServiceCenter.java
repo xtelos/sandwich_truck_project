@@ -18,16 +18,27 @@ public class ServiceCenter extends JPanel implements Representations{
         createImage();
     }
 
+    /**
+     * returns x value of the location
+     * @return
+     */
     @Override
     public int getLocationX() {
         return location.getX();
     }
 
+    /**
+     * returns y value of the location
+     * @return
+     */
     @Override
     public int getLocationY() {
         return location.getY();
     }
 
+    /**
+     * creates the service center image
+     */
     @Override
     public void createImage() {
         try {
