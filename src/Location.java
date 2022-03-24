@@ -80,6 +80,7 @@ public class Location {
      * @return
      */
     public int getClosestIntersectionX() {
+        return 0;
     }
 
     /**
@@ -87,5 +88,6 @@ public class Location {
      * @return
      */
     public int getClosestIntersectionY() {
+        return 0;
     }
 }
