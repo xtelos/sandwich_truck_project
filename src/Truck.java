@@ -60,11 +60,11 @@ public class Truck extends JPanel implements Representations {
      */
     @Override
     public void update() {
-
-        int locationDifferenceX = location.getX() % 100;
-        int locationDifferenceY = location.getY() % 100;
-
         Location currentDestination = destinations.getFirst();
+
+        int locationDifferenceX = currentDestination.getX() % 100;
+        int locationDifferenceY = currentDestination.getY() % 100;
+
         if(location.equals(currentDestination)) {
             destinations.removeFirst();
             this.update();
@@ -78,43 +78,47 @@ public class Truck extends JPanel implements Representations {
 
             if (currentDestination.getY() > location.getY())
             {
-                if (location.getX() % 100 == 0)
-                    location.setDestination(location.getX(), location.getY()+20);
+                if (location.getX() % 100 == 0 && location.getY() % 100 == 0)
+                    location.setDestination(location.getX(), location.getY()+1);
                 else
                 {
-                    location.setDestination(location.getX()+locationDifferenceX, location.getY());
+                    location.setDestination(location.getX(), location.getY()+1);
+                    destinations.addFirst(currentDestination);
                 }
 
             }
 
             else if (currentDestination.getY() < location.getY())
             {
-                if (location.getX() % 100 == 0)
-                    location.setDestination(location.getX(), location.getY()-20);
+                if (location.getX() % 100 == 0  && location.getY() % 100 == 0)
+                    location.setDestination(location.getX(), location.getY()-1);
                 else
                 {
-                    location.setDestination(location.getX()+locationDifferenceX, location.getY());
+                    location.setDestination(location.getX(), location.getY()-1);
+                    destinations.addFirst(currentDestination);
                 }
 
             }
 
             else if (currentDestination.getX() > location.getX())
             {
-                if (location.getY() % 100 == 0)
-                    location.setDestination(location.getX()+20, location.getY());
+                if (location.getX() % 100 == 0  && location.getY() % 100 == 0)
+                    location.setDestination(location.getX()+1, location.getY());
                 else
                 {
-                    location.setDestination(location.getX(), location.getY()+locationDifferenceY);
+                    location.setDestination(location.getX()+1, location.getY());
+                    destinations.addFirst(currentDestination);
                 }
 
             }
             else if (currentDestination.getX() < location.getX())
             {
-                if (location.getY() % 100 == 0)
-                    location.setDestination(location.getX()-20, location.getY());
+                if (location.getX() % 100 == 0 && location.getY() % 100 == 0)
+                    location.setDestination(location.getX()-1, location.getY());
                 else
                 {
-                    location.setDestination(location.getX(), location.getY()+locationDifferenceY);
+                    location.setDestination(location.getX()-1, location.getY());
+                    destinations.addFirst(currentDestination);
                 }
             }
         }
