@@ -80,7 +80,11 @@ public class Location {
      * @return
      */
     public int getClosestIntersectionX() {
-        return 0;
+        int streetMod = this.x % 100;
+        if (streetMod >= .5)
+            return this.x + (1 - streetMod)* 100;
+        else
+            return this.x - (streetMod * 100);
     }
 
     /**
@@ -88,6 +92,15 @@ public class Location {
      * @return
      */
     public int getClosestIntersectionY() {
-        return 0;
+        int streetMod = this.y % 100;
+        if (streetMod >= .5)
+            return this.y + (1 - streetMod)* 100;
+        else
+            return this.y - (streetMod * 100);
     }
+
+    public Location getClosestIntersection(){
+        return new Location(getClosestIntersectionX(),getClosestIntersectionY());
+    }
+
 }

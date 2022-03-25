@@ -65,6 +65,7 @@ public class Truck extends JPanel implements Representations {
     @Override
     public void update() {
         Location currentDestination = destinations.getFirst();
+        Location closestIntersection = location.getClosestIntersection();
 
         boolean canMoveUpOrDown = location.getX() % 100 == 0;
         boolean canMoveLeftOrRight = location.getY() % 100 == 0;
@@ -89,6 +90,8 @@ public class Truck extends JPanel implements Representations {
                     truckMoveRight();
                 else
                     truckMoveLeft();
+
+                destinations.addFirst(closestIntersection);
             }
 
 
@@ -101,6 +104,8 @@ public class Truck extends JPanel implements Representations {
                     truckMoveRight();
                 else
                     truckMoveLeft();
+
+                destinations.addFirst(closestIntersection);
             }
 
 
@@ -113,6 +118,8 @@ public class Truck extends JPanel implements Representations {
                     truckMoveDown();
                 else
                     truckMoveUp();
+
+                destinations.addFirst(closestIntersection);
             }
 
 
@@ -125,6 +132,8 @@ public class Truck extends JPanel implements Representations {
                     truckMoveDown();
                 else
                     truckMoveUp();
+
+                destinations.addFirst(closestIntersection);
             }
         }
     }
