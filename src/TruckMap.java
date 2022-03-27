@@ -36,12 +36,14 @@ public class TruckMap extends Panel {
         ArrayList<Order> orders = readBatchFile();
 
         // instantiate new strategy (can choose to either prioritize distance or the time of the order)
-        RouteStrategy strategy = new DistanceStrategy();
-        PriorityQueue<Location> queue = strategy.createRoute(orders);
+        RouteStrategy strategy = new TimeStrategy();
+        PriorityQueue<Order> queue = strategy.createRoute(orders);
 
         LinkedList<Location> destinations = new LinkedList<>();
         for (int i = 0; i < queue.size(); i++) {
-            destinations.add(queue.poll());
+            Location destination = queue.poll().convertToLocation();
+            destinations.add(destination);
+            System.out.println(destination);
         }
 
         // call convertOrdersToLocations(orders) and assign to destinations

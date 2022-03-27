@@ -28,14 +28,17 @@ public class TimeComparator implements Comparator<Order>
 
     @Override
     public int compare(Order o1, Order o2) {
-        if (o1.getTimeStamp().getHours() > o2.getTimeStamp().getHours())
+        TimeStamp o1TimeStamp = o1.getTimeStamp();
+        TimeStamp o2TimeStamp = o2.getTimeStamp();
+
+        if (o1TimeStamp.getHours() > o2TimeStamp.getHours())
             return -1;
-        else if (o1.getTimeStamp().getHours() < o2.getTimeStamp().getHours())
+        else if (o1TimeStamp.getHours() < o2TimeStamp.getHours())
             return 1;
         else {
-            if (o1.getTimeStamp().getMinutes() > o2.getTimeStamp().getMinutes())
+            if (o1TimeStamp.getMinutes() > o2TimeStamp.getMinutes())
                 return 1;
-            else if (o1.getTimeStamp().getMinutes() < o2.getTimeStamp().getMinutes())
+            else if (o1TimeStamp.getMinutes() < o2TimeStamp.getMinutes())
                 return -1;
         }
         return 0;

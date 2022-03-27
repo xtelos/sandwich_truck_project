@@ -14,6 +14,6 @@ public interface RouteStrategy {
      * Sorts list of destinations based on specific strategy
      * @return: PriorityQueue of Location objects
      */
-    PriorityQueue<Location> createRoute(ArrayList<Order> orders);
+    PriorityQueue<Order> createRoute(ArrayList<Order> orders);
 
 }

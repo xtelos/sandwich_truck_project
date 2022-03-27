@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 
 public class DistanceStrategy implements RouteStrategy{
 
-    private PriorityQueue<Location> queue;
+    private PriorityQueue<Order> queue;
 
     public DistanceStrategy() {
         queue = new PriorityQueue<>(new DistanceComparator());
@@ -20,9 +20,9 @@ public class DistanceStrategy implements RouteStrategy{
      * @param orders
      */
     @Override
-    public PriorityQueue<Location> createRoute(ArrayList<Order> orders) {
+    public PriorityQueue<Order> createRoute(ArrayList<Order> orders) {
         for (int i = 0; i < orders.size(); i++) {
-            queue.add(orders.get(i).convertToLocation());
+            queue.add(orders.get(i));
         }
         return queue;
     }
