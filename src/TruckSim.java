@@ -24,7 +24,6 @@ public class TruckSim extends JFrame {
      */
     public void runSim() {
         int i = 0;
-        truckMap.createRepresentations();
         while (truckMap.truckHasOrders()) {
             truckMap.update();
             truckMap.repaint();

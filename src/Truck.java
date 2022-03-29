@@ -65,7 +65,8 @@ public class Truck extends JPanel implements Representations {
     @Override
     public void update() {
         Location currentDestination = destinations.getFirst();
-        Location closestIntersection = location.getClosestIntersection();
+        Location closestIntersectionDestination = currentDestination.getClosestIntersection();
+        Location closestIntersectionCurrent = location.getClosestIntersection();
 
         boolean canMoveUpOrDown = location.getX() % 100 == 0;
         boolean canMoveLeftOrRight = location.getY() % 100 == 0;
@@ -91,7 +92,8 @@ public class Truck extends JPanel implements Representations {
                 else
                     truckMoveLeft();
 
-                destinations.addFirst(closestIntersection);
+                destinations.addFirst(closestIntersectionDestination);
+
             }
 
 
@@ -105,35 +107,38 @@ public class Truck extends JPanel implements Representations {
                 else
                     truckMoveLeft();
 
-                destinations.addFirst(closestIntersection);
+                destinations.addFirst(closestIntersectionDestination);
+
             }
 
 
             else if (currentDestination.getX() > location.getX() && canMoveLeftOrRight)
                 truckMoveRight();
 
-            else if(currentDestination.getX() > location.getX() && !canMoveUpOrDown)
+            else if(currentDestination.getX() > location.getX() && !canMoveLeftOrRight)
             {
                 if (location.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();
 
-                destinations.addFirst(closestIntersection);
+                destinations.addFirst(closestIntersectionDestination);
+
             }
 
 
             else if (currentDestination.getX() < location.getX() && canMoveLeftOrRight)
                 truckMoveLeft();
 
-            else if(currentDestination.getX() < location.getX() && !canMoveUpOrDown)
+            else if(currentDestination.getX() < location.getX() && !canMoveLeftOrRight)
             {
                 if (location.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();
 
-                destinations.addFirst(closestIntersection);
+                destinations.addFirst(closestIntersectionDestination);
+
             }
         }
     }

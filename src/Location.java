@@ -76,7 +76,7 @@ public class Location {
         }
 
     /**
-     * returns the x value of the closest intersecrtion's x value
+     * returns the x value of the closest intersection's x value
      * @return
      */
     public int getClosestIntersectionX() {
@@ -90,7 +90,7 @@ public class Location {
     }
 
     /**
-     * returns the y value of the closest intersecrtion's x value
+     * returns the y value of the closest intersection's x value
      * @return
      */
     public int getClosestIntersectionY() {

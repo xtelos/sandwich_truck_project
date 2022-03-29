@@ -12,32 +12,21 @@ public class TruckMap extends Panel {
     public Truck truck;
     public ServiceCenter serviceCenter;
 
-    /*
-    Draws the basic gridlines on the JFrame, which are used to position addresses
-     */
-    void drawLines(Graphics g) {
-
-        // Vertical Streets
-        for(int x = 1; x <= 1001; x = x + 100)
-            g.drawLine(x, 0, x, 1000);
-
-        // Horizontal Streets
-        for(int y = 0; y <= 1000; y = y + 100)
-            g.drawLine(0, y, 1000, y);
-    }
 
     /**
      * creates the service center and a basic truck to check if movement works
      */
-    public void createRepresentations() {
+    TruckMap() {
         Location location = new Location(500, 500);
 
         // call readBatchFile() and assign to ArrayList orders
         ArrayList<Order> orders = readBatchFile();
 
         // instantiate new strategy (can choose to either prioritize distance or the time of the order)
-        RouteStrategy strategy = new TimeStrategy();
-        PriorityQueue<Order> queue = strategy.createRoute(orders);
+        RouteStrategy timeStrategy = new TimeStrategy();
+        RouteStrategy distanceStrategy = new DistanceStrategy();
+
+        PriorityQueue<Order> queue = timeStrategy.createRoute(orders);
 
         LinkedList<Location> destinations = new LinkedList<>();
         for (int i = 0; i < queue.size(); i++) {
@@ -48,7 +37,7 @@ public class TruckMap extends Panel {
 
         // call convertOrdersToLocations(orders) and assign to destinations
 
-        truck = new Truck(location, destinations, strategy);
+        truck = new Truck(location, destinations, timeStrategy);
         serviceCenter = new ServiceCenter();
     }
 
@@ -57,6 +46,22 @@ public class TruckMap extends Panel {
      */
     public void update() {
         truck.update();
+    }
+
+
+    void drawLines(Graphics g) {
+    /*
+    Draws the basic gridlines on the JFrame, which are used to position addresses
+     */
+
+        // Vertical Streets
+        for(int x = 1; x <= 1001; x = x + 100)
+            g.drawLine(x, 0, x, 1000);
+
+        // Horizontal Streets
+        for(int y = 0; y <= 1000; y = y + 100)
+            g.drawLine(0, y, 1000, y);
+
     }
 
     /*
