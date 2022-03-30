@@ -10,7 +10,6 @@ public class TruckSim extends JFrame {
      * @param width
      */
     TruckSim(int length, int width){
-
         setSize(length,width);
         truckMap = new TruckMap();
 
@@ -23,7 +22,6 @@ public class TruckSim extends JFrame {
      * Creates truck and service center, and makes the truck change location to reach destination
      */
     public void runSim() {
-        int i = 0;
         while (truckMap.truckHasOrders()) {
             truckMap.update();
             truckMap.repaint();

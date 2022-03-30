@@ -11,7 +11,7 @@ import java.util.*;
 public class TruckMap extends Panel {
     public Truck truck;
     public ServiceCenter serviceCenter;
-
+    public RedHouse redHouse;
 
     /**
      * creates the service center and a basic truck to check if movement works
@@ -19,10 +19,8 @@ public class TruckMap extends Panel {
     TruckMap() {
         Location location = new Location(500, 500);
 
-        // call readBatchFile() and assign to ArrayList orders
         ArrayList<Order> orders = readBatchFile();
 
-        // instantiate new strategy (can choose to either prioritize distance or the time of the order)
         RouteStrategy timeStrategy = new TimeStrategy();
         RouteStrategy distanceStrategy = new DistanceStrategy();
 
@@ -35,10 +33,10 @@ public class TruckMap extends Panel {
             System.out.println(destination);
         }
 
-        // call convertOrdersToLocations(orders) and assign to destinations
 
         truck = new Truck(location, destinations, timeStrategy);
         serviceCenter = new ServiceCenter();
+        redHouse = new RedHouse(destinations);
     }
 
     /**
@@ -46,10 +44,15 @@ public class TruckMap extends Panel {
      */
     public void update() {
         truck.update();
+        if (truck.location.equals(redHouse.location))
+        {
+            redHouse.update();
+        }
     }
 
 
-    void drawLines(Graphics g) {
+    void drawNeighborhood(Graphics g) {
+
     /*
     Draws the basic gridlines on the JFrame, which are used to position addresses
      */
@@ -69,7 +72,8 @@ public class TruckMap extends Panel {
      */
     public void paint(Graphics g) {
         super.paint(g);
-        drawLines(g);
+        drawNeighborhood(g);
+        redHouse.paintComponent(g);
         truck.paintComponent(g);
         serviceCenter.paintComponent(g);
     }
