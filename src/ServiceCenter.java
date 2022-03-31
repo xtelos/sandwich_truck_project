@@ -42,7 +42,7 @@ public class ServiceCenter extends JPanel implements Representations{
     @Override
     public void createImage() {
         try {
-            image = ImageIO.read(new File("src/ServiceCenter.jpeg"));
+            image = ImageIO.read(new File("images/ServiceCenter.jpeg"));
         }
         catch (IOException e) {
             e.printStackTrace();
