@@ -43,7 +43,7 @@ public class Truck extends JPanel implements Representations {
     @Override
     public void createImage() {
         try {
-            image = ImageIO.read(new File("src/FoodTruckIcon.jpeg"));
+            image = ImageIO.read(new File("images/FoodTruckIcon.jpeg"));
         }
         catch (IOException e) {
             e.printStackTrace();

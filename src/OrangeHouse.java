@@ -31,7 +31,7 @@ public class OrangeHouse extends JPanel implements Representations {
     @Override
     public void createImage() {
         try {
-            image = ImageIO.read(new File("src/HouseType1.jpeg"));
+            image = ImageIO.read(new File("images/HouseType1.jpeg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
