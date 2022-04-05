@@ -66,7 +66,6 @@ public class TruckMap extends Panel {
         // Horizontal Streets
         for(int y = 0; y <= 1000; y = y + 100)
             g.drawLine(0, y, 1000, y);
-
     }
 
     /*

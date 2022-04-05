@@ -37,6 +37,7 @@ public class RedHouse extends JPanel implements Representations {
         }
     }
 
+
     @Override
     public void update() {
         destinations.removeFirst();
