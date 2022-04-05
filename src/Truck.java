@@ -13,6 +13,7 @@ public class Truck extends JPanel implements Representations {
     public LinkedList<Location> destinations;
     public BufferedImage image;
     public RouteStrategy strategy;
+    public double distanceTravelled;
 
     /**
      * creates a truck with a specific location and a linkedlist of destinations to drive to
@@ -74,6 +75,8 @@ public class Truck extends JPanel implements Representations {
 
             move(currentDestination, closestIntersection, canMoveUpOrDown, canMoveLeftOrRight);
         }
+        else
+            System.out.printf("%.2f", distanceTravelled);
     }
 
     /**
@@ -159,6 +162,7 @@ public class Truck extends JPanel implements Representations {
      */
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-1);
+        distanceTravelled += 0.01;
     }
 
     /**
@@ -166,6 +170,7 @@ public class Truck extends JPanel implements Representations {
      */
     private void truckMoveDown(){
         location.setLocation(location.getX(), location.getY()+1);
+        distanceTravelled += 0.01;
     }
 
     /**
@@ -173,6 +178,7 @@ public class Truck extends JPanel implements Representations {
      */
     private void truckMoveLeft(){
         location.setLocation(location.getX()-1, location.getY());
+        distanceTravelled += 0.01;
     }
 
     /**
@@ -180,6 +186,7 @@ public class Truck extends JPanel implements Representations {
      */
     private void truckMoveRight(){
         location.setLocation(location.getX()+1, location.getY());
+        distanceTravelled += 0.01;
     }
 
     /**
@@ -197,6 +204,11 @@ public class Truck extends JPanel implements Representations {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image,location.getX()-10,location.getY()-10,20,20,null);
+    }
+
+    public double getDistanceTravelled()
+    {
+        return distanceTravelled;
     }
 }
 
