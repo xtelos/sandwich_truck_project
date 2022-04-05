@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.LongSummaryStatistics;
 
 public class Truck extends JPanel implements Representations {
 
@@ -90,13 +91,14 @@ public class Truck extends JPanel implements Representations {
         }
 
         else {
+            //If x or Y is on a side street clause, focus on trying to get to the opposite value
 
             if (destination.getY() > location.getY() && upDown)
                 truckMoveDown();
 
             else if(destination.getY() > location.getY() && !upDown)
             {
-                if (location.getClosestIntersectionX() > location.getX())
+                if (destination.getClosestIntersectionX() > location.getX())
                     truckMoveRight();
                 else
                     truckMoveLeft();
@@ -111,7 +113,7 @@ public class Truck extends JPanel implements Representations {
 
             else if(destination.getY() < location.getY() && !upDown)
             {
-                if (location.getClosestIntersectionX() > location.getX())
+                if (destination.getClosestIntersectionX() > location.getX())
                     truckMoveRight();
                 else
                     truckMoveLeft();
@@ -126,7 +128,7 @@ public class Truck extends JPanel implements Representations {
 
             else if(destination.getX() > location.getX() && !leftRight)
             {
-                if (location.getClosestIntersectionY() > location.getY())
+                if (destination.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();
@@ -139,8 +141,9 @@ public class Truck extends JPanel implements Representations {
             else if (destination.getX() < location.getX() && leftRight)
                 truckMoveLeft();
 
-            else if(destination.getX() < location.getX() && !leftRight) {
-                if (location.getClosestIntersectionY() > location.getY())
+            else if(destination.getX() < location.getX() && !leftRight)
+            {
+                if (destination.getClosestIntersectionY() > location.getY())
                     truckMoveDown();
                 else
                     truckMoveUp();

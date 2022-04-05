@@ -24,30 +24,32 @@ public class TruckMap extends Panel {
         RouteStrategy timeStrategy = new TimeStrategy();
         RouteStrategy distanceStrategy = new DistanceStrategy();
 
-        PriorityQueue<Order> queue = timeStrategy.createRoute(orders);
+        PriorityQueue<Order> queue = distanceStrategy.createRoute(orders);
 
         LinkedList<Location> destinations = new LinkedList<>();
-        for (int i = 0; i < queue.size(); i++) {
+        LinkedList<Location> houses = new LinkedList<>();
+        for (int i = 0; i < 100; i++) {
             Location destination = queue.poll().convertToLocation();
             destinations.add(destination);
-            System.out.println(destination);
+            houses.add(destination);
         }
+        destinations.add(new Location(500, 500));
 
-
-        truck = new Truck(location, destinations, timeStrategy);
+        truck = new Truck(location, destinations, distanceStrategy);
         serviceCenter = new ServiceCenter();
-        redHouse = new RedHouse(destinations);
+        redHouse = new RedHouse(houses);
     }
 
     /**
      * Calls TruckDot's update so that TruckSim does not need to deal with the TruckDot class
      */
     public void update() {
-        truck.update();
         if (truck.location.equals(redHouse.location))
         {
             redHouse.update();
         }
+        truck.update();
+
     }
 
 
@@ -144,3 +146,70 @@ public class TruckMap extends Panel {
         return new Address(houseNumber, street);
     }
 }
+//590 400
+//400 590
+//500 640
+//        600 600
+//        600 600 ?
+//        600 400 ?
+//        600 400 ?
+// 380 400
+//        300 500
+//        300 500 ?
+// 300 520
+// 470 300
+//        300 600
+//        300 600 ?
+// 600 700
+//
+//        500 800
+//        500 800 ?
+// 300 480
+// 800 470
+// 300 730
+// 810 500
+// 500 180
+// 250 300
+// 200 620
+// 500 170
+// 400 180
+// 400 820
+//
+//        700 800
+//        700 800
+//        300 800
+//        300 800
+//        200 770
+//        200 220
+//        140 700
+//        700 860
+//        860 700
+//        800 210
+//        800 200
+//        800 200
+//        920 600
+//        900 680
+//        900 700
+//        900 700
+//        700 900
+//        700 900
+//        870 200
+//        100 780
+//        110 200
+//        210 100
+//        800 100
+//        100 800
+//        1000 560
+//        910 800
+//        700 970
+//        100 820
+//        1000 620
+//        200 920
+//        200 950
+//        130 100
+//        1000 730
+//        900 120
+//        960 100
+//        1000 870
+//        1000 900
+//        1000 900
