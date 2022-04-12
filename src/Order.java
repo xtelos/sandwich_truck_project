@@ -11,10 +11,12 @@ public class Order {
 
     private Address address;
     private TimeStamp timeStamp;
+    private Sandwich sandwich;
 
-    public Order(Address address, TimeStamp timeStamp) {
+    public Order(Address address, TimeStamp timeStamp, Sandwich sandwich) {
         this.address = address;
         this.timeStamp = timeStamp;
+        this.sandwich = sandwich;
     }
 
     /**
@@ -31,6 +33,14 @@ public class Order {
      */
     public TimeStamp getTimeStamp() {
         return this.timeStamp;
+    }
+
+    /**
+     * Gives the type of sandwich ordered
+     * @return: Sandwich for order
+     */
+    public Sandwich getSandwich(){
+        return this.sandwich;
     }
 
     @Override
@@ -82,4 +92,7 @@ public class Order {
 
         return conversions.get(street);
     }
+
+
+
 }
