@@ -4,8 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.LongSummaryStatistics;
+import java.util.*;
 
 public class Truck extends JPanel implements Representations {
 
@@ -13,17 +12,21 @@ public class Truck extends JPanel implements Representations {
     public LinkedList<Location> destinations;
     public BufferedImage image;
     public RouteStrategy strategy;
-    public double distanceTravelled;
+    public TruckMovement truckMovement;
 
     /**
      * creates a truck with a specific location and a linkedlist of destinations to drive to
-     * @param location
-     * @param destinations
      */
-    Truck(Location location, LinkedList<Location> destinations, RouteStrategy strategy) {
-        this.location = location;
-        this.destinations = destinations;
+    Truck(RouteStrategy strategy) {
         this.strategy = strategy;
+        this.location = new Location(500,500);
+        destinations = new LinkedList<>();
+        DestinationCreator destinationCreator = new DestinationCreator();
+        destinationCreator.createDestinations(destinations, this.strategy);
+        destinations.add(new Location(500, 500));
+
+        truckMovement = new TruckMovement(this,destinations);
+
         createImage();
     }
 
@@ -52,7 +55,6 @@ public class Truck extends JPanel implements Representations {
 
     }
 
-
     /**
      * returns true if destinations is not empty
      * @return
@@ -73,127 +75,17 @@ public class Truck extends JPanel implements Representations {
             boolean canMoveUpOrDown = location.getX() % 100 == 0;
             boolean canMoveLeftOrRight = location.getY() % 100 == 0;
 
-            move(currentDestination, closestIntersection, canMoveUpOrDown, canMoveLeftOrRight);
+            truckMovement.move(currentDestination, closestIntersection, canMoveUpOrDown, canMoveLeftOrRight);
         }
-        else
-            System.out.printf("%.2f", distanceTravelled);
-    }
-
-    /**
-     * \logic for moving the truck
-     * @param destination
-     * @param intersection
-     * @param upDown
-     * @param leftRight
-     */
-    private void move(Location destination, Location intersection, boolean upDown, boolean leftRight)
-    {
-        if(location.equals(destination)) {
-            destinations.removeFirst();
-            this.update();
-        }
-
         else {
-            //If x or Y is on a side street clause, focus on trying to get to the opposite value
-
-            if (destination.getY() > location.getY() && upDown)
-                truckMoveDown();
-
-            else if(destination.getY() > location.getY() && !upDown)
-            {
-                if (destination.getClosestIntersectionX() > location.getX())
-                    truckMoveRight();
-                else
-                    truckMoveLeft();
-
-                destinations.addFirst(intersection);
-
-            }
-
-
-            else if (destination.getY() < location.getY() && upDown)
-                truckMoveUp();
-
-            else if(destination.getY() < location.getY() && !upDown)
-            {
-                if (destination.getClosestIntersectionX() > location.getX())
-                    truckMoveRight();
-                else
-                    truckMoveLeft();
-
-                destinations.addFirst(intersection);
-
-            }
-
-
-            else if (destination.getX() > location.getX() && leftRight)
-                truckMoveRight();
-
-            else if(destination.getX() > location.getX() && !leftRight)
-            {
-                if (destination.getClosestIntersectionY() > location.getY())
-                    truckMoveDown();
-                else
-                    truckMoveUp();
-
-                destinations.addFirst(intersection);
-
-            }
-
-
-            else if (destination.getX() < location.getX() && leftRight)
-                truckMoveLeft();
-
-            else if(destination.getX() < location.getX() && !leftRight)
-            {
-                if (destination.getClosestIntersectionY() > location.getY())
-                    truckMoveDown();
-                else
-                    truckMoveUp();
-
-                destinations.addFirst(intersection);
-            }
+            System.out.printf("%.2f", truckMovement.getDistanceTravelled());
+            destinations.add(new Location(500, 500));
         }
     }
 
-
-    /**
-     * moves truck up
-     */
-    private void truckMoveUp(){
-        location.setLocation(location.getX(), location.getY()-1);
-        distanceTravelled += 0.01;
-    }
-
-    /**
-     * moves truck down
-     */
-    private void truckMoveDown(){
-        location.setLocation(location.getX(), location.getY()+1);
-        distanceTravelled += 0.01;
-    }
-
-    /**
-     * moves truck left
-     */
-    private void truckMoveLeft(){
-        location.setLocation(location.getX()-1, location.getY());
-        distanceTravelled += 0.01;
-    }
-
-    /**
-     * moves truck right
-     */
-    private void truckMoveRight(){
-        location.setLocation(location.getX()+1, location.getY());
-        distanceTravelled += 0.01;
-    }
-
-    /**
-     * truck moves but can only make right turns
-     */
-    public void moveRight(){
-
+    public String letterLocation(int street)
+    {
+        return location.streetToLetter(street);
     }
 
     /**
@@ -208,7 +100,7 @@ public class Truck extends JPanel implements Representations {
 
     public double getDistanceTravelled()
     {
-        return distanceTravelled;
+        return truckMovement.getDistanceTravelled();
     }
-}
 
+}

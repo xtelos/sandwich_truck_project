@@ -107,4 +107,37 @@ public class Location {
         return new Location(getClosestIntersectionX(),getClosestIntersectionY());
     }
 
+    public String streetToLetter(int street)
+    {
+        if (street < 100)
+            return "A ";
+
+        else if (street < 200)
+            return "B ";
+
+        else if (street < 300)
+            return "C ";
+
+        else if (street < 400)
+            return "D ";
+
+        else if (street < 500)
+            return "E ";
+
+        else if (street < 600)
+            return "F ";
+
+        else if (street < 700)
+            return "G ";
+
+        else if (street < 800)
+            return "H ";
+
+        else if (street < 900)
+            return "I ";
+
+        else
+            return "J ";
+    }
+
 }

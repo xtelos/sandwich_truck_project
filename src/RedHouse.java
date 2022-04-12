@@ -12,8 +12,11 @@ public class RedHouse extends JPanel implements Representations {
     public LinkedList<Location> destinations;
     public BufferedImage image;
 
-    RedHouse(LinkedList<Location> destinations){
-        this.destinations = destinations;
+    RedHouse(RouteStrategy strategy){
+        this.destinations = new LinkedList<>();
+
+        DestinationCreator destinationCreator = new DestinationCreator();
+        destinationCreator.createDestinations(destinations, strategy);
         this.location = this.destinations.getFirst();
         createImage();
     }
@@ -48,5 +51,10 @@ public class RedHouse extends JPanel implements Representations {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image,location.getX(),location.getY(),20,20,null);
+    }
+
+    public String letterLocation(int street)
+    {
+        return location.streetToLetter(street);
     }
 }
