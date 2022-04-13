@@ -56,7 +56,7 @@ public class DestinationCreator {
         Address address = getAddress(data[0]);
         TimeStamp timeStamp = getTimeStamp(data[1]);
 
-        Order order = new Order(address, timeStamp);
+        Order order = new Order(address, timeStamp, new Turkey());
         orders.add(order);
     }
 
