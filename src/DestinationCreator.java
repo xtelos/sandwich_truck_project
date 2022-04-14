@@ -60,8 +60,9 @@ public class DestinationCreator {
 
         Address address = getAddress(data[0]);
         TimeStamp timeStamp = getTimeStamp(data[1]);
+        Sandwich sandwich = getSandwich(data[2]);
 
-        Order order = new Order(address, timeStamp, new Turkey());
+        Order order = new Order(address, timeStamp, sandwich);
         orders.add(order);
     }
 
@@ -87,5 +88,48 @@ public class DestinationCreator {
         int houseNumber = Integer.parseInt(addressInfo.substring(0, 3));
         String street = addressInfo.substring(4, 5);
         return new Address(houseNumber, street);
+    }
+
+    /**
+     * creates a sandwich object, defaulting to a very simple hamburger if sandwichInfo is unrecognized by the method
+     * @param sandwichInfo
+     * @return
+     */
+    private Sandwich getSandwich(String sandwichInfo){
+
+        Sandwich newSandwich;
+
+        if(sandwichInfo.equals("Ham Sandwich"))
+        {
+            newSandwich = new Ham();
+            newSandwich = new Bread(newSandwich);
+            newSandwich = new Cheese(newSandwich);
+            newSandwich = new Mayonnaise(newSandwich);
+        }
+        else if(sandwichInfo.equals("Hamburger"))
+        {
+            newSandwich = new Hamburger();
+            newSandwich = new Bun(newSandwich);
+            newSandwich = new Cheese(newSandwich);
+            newSandwich = new Lettuce(newSandwich);
+            newSandwich = new Tomato(newSandwich);
+            newSandwich = new Ketchup(newSandwich);
+        }
+        else if (sandwichInfo.equals("Turkey Sandwich"))
+        {
+            newSandwich = new Turkey();
+            newSandwich = new Bread(newSandwich);
+            newSandwich = new Cheese(newSandwich);
+            newSandwich = new Mustard(newSandwich);
+        }
+        else
+        {
+            newSandwich = new Hamburger();
+            newSandwich = new Bun(newSandwich);
+            newSandwich = new Cheese(newSandwich);
+        }
+
+        return newSandwich;
+
     }
 }
