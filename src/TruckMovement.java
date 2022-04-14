@@ -15,6 +15,13 @@ public class TruckMovement {
         this.distanceTravelled = 0;
     }
 
+    /**
+     * logic for the movement of the truck
+     * @param destination
+     * @param intersection
+     * @param upDown
+     * @param leftRight
+     */
     public void move(Location destination, Location intersection, boolean upDown, boolean leftRight)
     {
         if(location.equals(destination)) {
@@ -84,6 +91,10 @@ public class TruckMovement {
         }
     }
 
+    /**
+     *
+     * @return distanceTravelled
+     */
     public double getDistanceTravelled()
     {
         return distanceTravelled;
@@ -91,25 +102,25 @@ public class TruckMovement {
 
 
     private void truckMoveUp(){
-        location.setLocation(location.getX(), location.getY()-1);
-        distanceTravelled += 0.01;
+        location.setLocation(location.getX(), location.getY()-10);
+        distanceTravelled += 0.1;
     }
 
 
     private void truckMoveDown(){
-        location.setLocation(location.getX(), location.getY()+1);
-        distanceTravelled += 0.01;
+        location.setLocation(location.getX(), location.getY()+10);
+        distanceTravelled += 0.1;
     }
 
 
     private void truckMoveLeft(){
-        location.setLocation(location.getX()-1, location.getY());
-        distanceTravelled += 0.01;
+        location.setLocation(location.getX()-10, location.getY());
+        distanceTravelled += 0.1;
     }
 
     private void truckMoveRight(){
-        location.setLocation(location.getX()+1, location.getY());
-        distanceTravelled += 0.01;
+        location.setLocation(location.getX()+10, location.getY());
+        distanceTravelled += 0.1;
     }
 
 

@@ -18,7 +18,7 @@ public class TruckSim extends JFrame{
         this.truckMap = new TruckMap(strategy);
 
         setContentPane(truckMap);
-        setDefaultCloseOperation(this.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -26,13 +26,13 @@ public class TruckSim extends JFrame{
      * Creates truck and service center, and makes the truck change location to reach destination
      */
     public void runSim() {
-        truckMap.paint(truckMap.getGraphics());
+
         while (truckMap.truckHasOrders()) {
             truckMap.update();
             truckMap.paint(truckMap.getGraphics());
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             }
             catch (InterruptedException ex) {
             }

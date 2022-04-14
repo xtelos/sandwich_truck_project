@@ -17,7 +17,9 @@ public class OptionsMenu extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
+    /**
+     * creates buttons for strategy selection
+     */
     public void createButtons(){
         panel.setLayout(null);
         distanceButton = new JButton("Distance Strategy");
@@ -30,6 +32,10 @@ public class OptionsMenu extends JFrame implements ActionListener {
         panel.add(timeButton);
     }
 
+    /**
+     * runs sim based on button selection
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == distanceButton) {

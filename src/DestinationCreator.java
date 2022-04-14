@@ -12,6 +12,11 @@ public class DestinationCreator {
 
     }
 
+    /**
+     * creates list of destinations for the route
+     * @param destinations
+     * @param strategy
+     */
     public void createDestinations(LinkedList<Location> destinations, RouteStrategy strategy){
         ArrayList<Order> orders = readBatchFile();
         PriorityQueue<Order> queue = strategy.createRoute(orders);
