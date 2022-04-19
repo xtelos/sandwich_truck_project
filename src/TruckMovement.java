@@ -103,24 +103,24 @@ public class TruckMovement {
 
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-10);
-        distanceTravelled += 0.1;
+        distanceTravelled += 0.01;
     }
 
 
     private void truckMoveDown(){
         location.setLocation(location.getX(), location.getY()+10);
-        distanceTravelled += 0.1;
+        distanceTravelled += 0.01;
     }
 
 
     private void truckMoveLeft(){
         location.setLocation(location.getX()-10, location.getY());
-        distanceTravelled += 0.1;
+        distanceTravelled += 0.01;
     }
 
     private void truckMoveRight(){
         location.setLocation(location.getX()+10, location.getY());
-        distanceTravelled += 0.1;
+        distanceTravelled += 0.01;
     }
 
 
