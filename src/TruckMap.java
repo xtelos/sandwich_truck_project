@@ -58,7 +58,11 @@ public class TruckMap extends JPanel {
 
         g.drawString(String.format("Distance Travelled: %.2f miles", truck.getDistanceTravelled()), 1010, 15);
         g.drawString("Current Location: " + truck.letterLocation(truck.getLocationX()) + truck.getLocationY() + " Street", 1010, 65);
-        g.drawString("Current Destination: " + redHouse.letterLocation(redHouse.getLocationX()) + redHouse.getLocationY() + " Street", 1010, 115);
+        if(!redHouse.isEmpty())
+            g.drawString("Current Destination: " + redHouse.letterLocation(redHouse.getLocationX()) + redHouse.getLocationY() + " Street", 1010, 115);
+        else{
+            g.drawString("Current Destination: " + serviceCenter.letterLocation(serviceCenter.getLocationX()) + serviceCenter.getLocationY() + " Street", 1010, 115);
+        }
     }
 
     /**

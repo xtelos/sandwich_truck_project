@@ -14,7 +14,7 @@ public class ServiceCenter extends JPanel implements Representations{
      * Constructor without a specific start location
      */
     ServiceCenter() {
-        this.location = new Location(490,490);
+        this.location = new Location(500,500);
         createImage();
     }
 
@@ -56,13 +56,19 @@ public class ServiceCenter extends JPanel implements Representations{
     public void update() {
     }
 
+
+    public String letterLocation(int street)
+    {
+        return location.streetToLetter(street);
+    }
+
     /**
      * Places the service center on the map as a blue dot
      */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(image,location.getX()-10,location.getY()-10,20,20,null);
+        g.drawImage(image,location.getX()-20,location.getY()-20,20,20,null);
 
     }
 }

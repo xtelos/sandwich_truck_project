@@ -27,11 +27,11 @@ public class TruckMovement {
         if(location.equals(destination)) {
             destinations.removeFirst();
             try {
-                Thread.sleep(1000);
+                if(!location.equals(intersection))
+                Thread.sleep(500);
             }
             catch (InterruptedException ex) {
             }
-            truck.update();
         }
 
         else {

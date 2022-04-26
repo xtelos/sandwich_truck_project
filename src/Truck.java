@@ -23,7 +23,7 @@ public class Truck extends JPanel implements Representations {
         destinations = new LinkedList<>();
         DestinationCreator destinationCreator = new DestinationCreator();
         destinationCreator.createDestinations(destinations, this.strategy);
-        destinations.add(new Location(500, 500));
+        destinations.addLast(new Location(500,500));
 
         truckMovement = new TruckMovement(this,destinations);
 

@@ -43,8 +43,19 @@ public class RedHouse extends JPanel implements Representations {
 
     @Override
     public void update() {
-        destinations.removeFirst();
-        location = destinations.getFirst();
+        if (destinations.size()>1)
+        {
+            destinations.removeFirst();
+            location = destinations.getFirst();
+        }
+        else if(!destinations.isEmpty()){
+            destinations.removeFirst();
+            image = null;
+        }
+    }
+
+    public boolean isEmpty(){
+        return destinations.isEmpty();
     }
 
     @Override
