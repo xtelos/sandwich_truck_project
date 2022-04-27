@@ -13,7 +13,7 @@ public class Truck extends JPanel implements Representations {
     public BufferedImage image;
     public RouteStrategy strategy;
     public TruckMovement truckMovement;
-
+    public Location previousDestination;
     /**
      * creates a truck with a specific location and a linkedlist of destinations to drive to
      */
@@ -27,6 +27,7 @@ public class Truck extends JPanel implements Representations {
 
         truckMovement = new TruckMovement(this,destinations);
 
+        previousDestination = location;
         createImage();
     }
 
@@ -70,16 +71,11 @@ public class Truck extends JPanel implements Representations {
     public void update() {
         if (!destinations.isEmpty()) {
             Location currentDestination = destinations.getFirst();
-            Location closestIntersection = currentDestination.getClosestIntersection();
 
             boolean canMoveUpOrDown = location.getX() % 100 == 0;
             boolean canMoveLeftOrRight = location.getY() % 100 == 0;
 
-            truckMovement.move(currentDestination, closestIntersection, canMoveUpOrDown, canMoveLeftOrRight);
-        }
-        else {
-            System.out.printf("%.2f", truckMovement.getDistanceTravelled());
-            destinations.add(new Location(500, 500));
+            truckMovement.move(currentDestination, canMoveUpOrDown, canMoveLeftOrRight);
         }
     }
 

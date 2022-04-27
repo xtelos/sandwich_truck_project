@@ -7,11 +7,6 @@ import java.util.Scanner;
 
 public class DestinationCreator {
 
-    public DestinationCreator()
-    {
-
-    }
-
     /**
      * creates list of destinations for the route
      * @param destinations
@@ -20,7 +15,8 @@ public class DestinationCreator {
     public void createDestinations(LinkedList<Location> destinations, RouteStrategy strategy){
         ArrayList<Order> orders = readBatchFile();
         PriorityQueue<Order> queue = strategy.createRoute(orders);
-        for (int i = 0; i < 100; i++) {
+        int temp = queue.size() - 100;
+        for (int i = 0; i < temp + 100; i++) {
             Location destination = queue.poll().convertToLocation();
             destinations.add(destination);
         }

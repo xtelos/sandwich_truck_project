@@ -103,10 +103,12 @@ public class Location {
             return this.y - streetMod;
     }
 
-    public Location getClosestIntersection(){
-        return new Location(getClosestIntersectionX(),getClosestIntersectionY());
-    }
 
+    /**
+     * converts street into c address to display
+     * @param street
+     * @return
+     */
     public String streetToLetter(int street)
     {
         if (street < 100)

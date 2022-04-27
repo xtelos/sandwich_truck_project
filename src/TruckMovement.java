@@ -18,16 +18,15 @@ public class TruckMovement {
     /**
      * logic for the movement of the truck
      * @param destination
-     * @param intersection
      * @param upDown
      * @param leftRight
      */
-    public void move(Location destination, Location intersection, boolean upDown, boolean leftRight)
+    public void move(Location destination, boolean upDown, boolean leftRight)
     {
         if(location.equals(destination)) {
+            truck.previousDestination  = destinations.getFirst();
             destinations.removeFirst();
             try {
-                if(!location.equals(intersection))
                 Thread.sleep(500);
             }
             catch (InterruptedException ex) {
@@ -35,65 +34,49 @@ public class TruckMovement {
         }
 
         else {
-
-            if (destination.getY() > location.getY() && upDown)
-                truckMoveDown();
-
-            else if(destination.getY() > location.getY() && !upDown)
-            {
-                if (destination.getClosestIntersectionX() > location.getX())
+            if (Math.abs(destination.getX() - location.getX()) > Math.abs(destination.getY() - location.getY())) {
+                if (destination.getX() > location.getX() && leftRight)
                     truckMoveRight();
-                else
+
+                else if (destination.getX() > location.getX() && !leftRight)
+                    moveUpOrDown(destination);
+
+                else if (destination.getX() < location.getX() && leftRight)
                     truckMoveLeft();
 
-                destinations.addFirst(intersection);
-
+                else if (destination.getX() < location.getX() && !leftRight)
+                    moveUpOrDown(destination);
             }
+            else
+                {
+                    if (destination.getY() > location.getY() && upDown)
+                        truckMoveDown();
 
+                    else if (destination.getY() > location.getY() && !upDown)
+                        moveLeftOrRight(destination);
 
-            else if (destination.getY() < location.getY() && upDown)
-                truckMoveUp();
+                    else if (destination.getY() < location.getY() && upDown)
+                        truckMoveUp();
 
-            else if(destination.getY() < location.getY() && !upDown)
-            {
-                if (destination.getClosestIntersectionX() > location.getX())
-                    truckMoveRight();
-                else
-                    truckMoveLeft();
-
-                destinations.addFirst(intersection);
-
-            }
-
-
-            else if (destination.getX() > location.getX() && leftRight)
-                truckMoveRight();
-
-            else if(destination.getX() > location.getX() && !leftRight)
-            {
-                if (destination.getClosestIntersectionY() > location.getY())
-                    truckMoveDown();
-                else
-                    truckMoveUp();
-
-                destinations.addFirst(intersection);
-
-            }
-
-
-            else if (destination.getX() < location.getX() && leftRight)
-                truckMoveLeft();
-
-            else if(destination.getX() < location.getX() && !leftRight)
-            {
-                if (destination.getClosestIntersectionY() > location.getY())
-                    truckMoveDown();
-                else
-                    truckMoveUp();
-
-                destinations.addFirst(intersection);
+                    else if (destination.getY() < location.getY() && !upDown)
+                        moveLeftOrRight(destination);
+                }
             }
         }
+
+
+    private void moveUpOrDown(Location destination) {
+        if (destination.getClosestIntersectionY() > location.getY())
+            truckMoveDown();
+        else
+            truckMoveUp();
+    }
+
+    private void moveLeftOrRight(Location destination) {
+        if (destination.getClosestIntersectionX() > location.getX())
+            truckMoveRight();
+        else
+            truckMoveLeft();
     }
 
     /**
@@ -105,6 +88,15 @@ public class TruckMovement {
         return distanceTravelled;
     }
 
+
+    /**
+     *
+     * @param location
+     * @return true if current destination is an intersection
+     */
+    public boolean destinationIsIntersection(Location location){
+        return location.getX() % 100 == 0 && location.getY() % 100 == 0;
+    }
 
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-10);
