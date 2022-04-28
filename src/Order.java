@@ -45,7 +45,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return address.toString() + "," + timeStamp.toString();
+        return address.toString() + "," + timeStamp.toString() + "," + sandwich.getDescription();
     }
 
     /**

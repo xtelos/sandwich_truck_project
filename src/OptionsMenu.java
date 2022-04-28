@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Time;
 
 public class OptionsMenu extends JFrame implements ActionListener {
     public JPanel panel;
@@ -61,11 +65,19 @@ public class OptionsMenu extends JFrame implements ActionListener {
             sim.runSim();
         }
         else{
+            // Orders must be in format of 999 M Street,9:99,Ham Sandwich
             try {
-                String[] street = orderText.getText().split(" ");
-                OrderGenerator orderGenerator = new OrderGenerator();
-                orderGenerator.writeAddressToFile(street[0], Integer.parseInt(street[1]));
-                orderText.setText("");
+                try {
+                    File file = new File("orders.txt");
+                    FileWriter fileWriter = new FileWriter(file, true);
+                    fileWriter.write(orderText.getText() + "\n");
+                    fileWriter.close();
+                }
+                catch (IOException fileNotFound) {
+                    System.out.println("Could not open file");
+                    fileNotFound.printStackTrace();
+                }
+                orderText.setText("Enter Order");
             }
             catch (Exception n)
             {
@@ -73,5 +85,6 @@ public class OptionsMenu extends JFrame implements ActionListener {
             }
         }
     }
+
 }
 
