@@ -26,7 +26,7 @@ public class TruckMovement {
         if(location.equals(destination)) {
             destinations.removeFirst();
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             }
             catch (InterruptedException ex) {
             }

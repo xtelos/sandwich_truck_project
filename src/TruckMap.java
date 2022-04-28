@@ -10,6 +10,7 @@ public class TruckMap extends JPanel {
     public Truck truck;
     public ServiceCenter serviceCenter;
     public RedHouse redHouse;
+    public boolean messageAppears;
 
     /**
      * creates the service center and a basic truck to check if movement works
@@ -19,6 +20,7 @@ public class TruckMap extends JPanel {
         truck = new Truck(strategy);
         serviceCenter = new ServiceCenter();
         redHouse = new RedHouse(strategy);
+        messageAppears= false;
     }
 
     /**
@@ -27,8 +29,13 @@ public class TruckMap extends JPanel {
     public void update() {
         if (truck.location.equals(redHouse.location)) {
             redHouse.update();
+            messageAppears = true;
         }
-        truck.update();
+        else{
+            truck.update();
+            messageAppears = false;
+        }
+
     }
 
     /**
@@ -62,6 +69,13 @@ public class TruckMap extends JPanel {
             g.drawString("Current Destination: " + redHouse.letterLocation(redHouse.getLocationX()) + redHouse.getLocationY() + " Street", 1010, 115);
         else{
             g.drawString("Current Destination: " + serviceCenter.letterLocation(serviceCenter.getLocationX()) + serviceCenter.getLocationY() + " Street", 1010, 115);
+        }
+        if (messageAppears)
+        {
+            g.setColor(Color.CYAN);
+            g.fillRect(350, 350, 300, 100);
+            g.setColor(Color.black);
+            g.drawString("Order to: " + truck.letterLocation(truck.getLocationX()) + truck.getLocationY() + " Street Completed", 400, 400);
         }
     }
 
