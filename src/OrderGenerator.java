@@ -57,7 +57,7 @@ public class OrderGenerator
         }
     }
 
-    private void writeAddressToFile(String street, int houseNum) {
+    public void writeAddressToFile(String street, int houseNum) {
         Address address = new Address(houseNum, street);
         addressBook.add(address);
         String timeStamp = generateTimeStamp();
@@ -86,7 +86,7 @@ public class OrderGenerator
      */
     private void writeToFile(Address address, String timeStamp) {
         try {
-            File file = new File("orders.txt");
+            File file = new File("movementTest.txt");
             FileWriter fileWriter = new FileWriter(file, true);
             fileWriter.write(address.getHouseNumber() + " " + address.getStreet() + " Street, " + timeStamp + "\n");
             fileWriter.close();

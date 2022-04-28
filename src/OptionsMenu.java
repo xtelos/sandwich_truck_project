@@ -1,20 +1,22 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
 
 public class OptionsMenu extends JFrame implements ActionListener {
     public JPanel panel;
     public JButton distanceButton;
     public JButton timeButton;
+    public JButton addOrderButton;
+    public JTextField orderText;
 
     public OptionsMenu()
     {
-        setSize(1000,1000);
+        setSize(1500,1500);
         panel = new JPanel();
 
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
     }
 
     /**
@@ -30,6 +32,14 @@ public class OptionsMenu extends JFrame implements ActionListener {
         timeButton.addActionListener(this);
         timeButton.setBounds(200, 310, 500, 300);
         panel.add(timeButton);
+        addOrderButton = new JButton("Add Order");
+        addOrderButton.addActionListener(this);
+        addOrderButton.setBounds(800, 150, 100, 50);
+        panel.add(addOrderButton);
+        orderText = new JTextField("Enter Order");
+        orderText.setBounds(800, 100, 300,25);
+        panel.add(orderText);
+        setVisible(true);
     }
 
     /**
@@ -44,11 +54,23 @@ public class OptionsMenu extends JFrame implements ActionListener {
             sim.runSim();
         }
 
-        else
+        else if (e.getSource() == timeButton)
         {
             this.dispose();
             TruckSim sim = new TruckSim(new TimeStrategy());
             sim.runSim();
+        }
+        else{
+            try {
+                String[] street = orderText.getText().split(" ");
+                OrderGenerator orderGenerator = new OrderGenerator();
+                orderGenerator.writeAddressToFile(street[0], Integer.parseInt(street[1]));
+                orderText.setText("");
+            }
+            catch (Exception n)
+            {
+                orderText.setText("Invalid Text, Enter Another Order");
+            }
         }
     }
 }

@@ -35,6 +35,7 @@ public class TruckSim extends JFrame{
                 Thread.sleep(100);
             }
             catch (InterruptedException ex) {
+                this.dispose();
             }
         }
     }

@@ -24,7 +24,6 @@ public class TruckMovement {
     public void move(Location destination, boolean upDown, boolean leftRight)
     {
         if(location.equals(destination)) {
-            truck.previousDestination  = destinations.getFirst();
             destinations.removeFirst();
             try {
                 Thread.sleep(500);
@@ -89,14 +88,6 @@ public class TruckMovement {
     }
 
 
-    /**
-     *
-     * @param location
-     * @return true if current destination is an intersection
-     */
-    public boolean destinationIsIntersection(Location location){
-        return location.getX() % 100 == 0 && location.getY() % 100 == 0;
-    }
 
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-10);

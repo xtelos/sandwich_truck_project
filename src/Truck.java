@@ -13,7 +13,6 @@ public class Truck extends JPanel implements Representations {
     public BufferedImage image;
     public RouteStrategy strategy;
     public TruckMovement truckMovement;
-    public Location previousDestination;
     /**
      * creates a truck with a specific location and a linkedlist of destinations to drive to
      */
@@ -27,7 +26,6 @@ public class Truck extends JPanel implements Representations {
 
         truckMovement = new TruckMovement(this,destinations);
 
-        previousDestination = location;
         createImage();
     }
 
