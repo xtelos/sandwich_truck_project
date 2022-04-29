@@ -114,14 +114,4 @@ public class Truck extends JPanel implements Representations {
         return truckMovement.getDistanceTravelled();
     }
 
-    /**
-     *
-     * @return completedDeliveries from Truckmovement
-     */
-    public int getCompletedDeliveries()
-    {
-        return truckMovement.completedDeliveries;
     }
-
-
-}

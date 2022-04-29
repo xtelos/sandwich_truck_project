@@ -6,7 +6,6 @@ public class TruckMovement {
     public LinkedList<Location> destinations;
     public Location location;
     public double distanceTravelled;
-    public int completedDeliveries;
 
     public TruckMovement(Truck truck, LinkedList<Location> destinations)
     {
@@ -14,7 +13,6 @@ public class TruckMovement {
         this.location = truck.location;
         this.destinations = destinations;
         this.distanceTravelled = 0;
-        completedDeliveries = 0;
     }
 
     /**
@@ -27,7 +25,6 @@ public class TruckMovement {
     {
         if(location.equals(destination)) {
             destinations.removeFirst();
-            completedDeliveries++;
             try {
                 Thread.sleep(1000);
             }
@@ -104,7 +101,6 @@ public class TruckMovement {
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-10);
         distanceTravelled += 0.01;
-        completedDeliveries = 0;
     }
 
 
@@ -114,7 +110,6 @@ public class TruckMovement {
     private void truckMoveDown(){
         location.setLocation(location.getX(), location.getY()+10);
         distanceTravelled += 0.01;
-        completedDeliveries = 1;
     }
 
 
@@ -124,7 +119,6 @@ public class TruckMovement {
     private void truckMoveLeft(){
         location.setLocation(location.getX()-10, location.getY());
         distanceTravelled += 0.01;
-        completedDeliveries = 2;
     }
 
     /**
@@ -133,7 +127,6 @@ public class TruckMovement {
     private void truckMoveRight(){
         location.setLocation(location.getX()+10, location.getY());
         distanceTravelled += 0.01;
-        completedDeliveries = 3;
     }
 
 
