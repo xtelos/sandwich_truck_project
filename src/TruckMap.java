@@ -39,6 +39,15 @@ public class TruckMap extends JPanel {
     }
 
     /**
+     *
+     * @return completedDeliveries
+     */
+    public int getCompletedDeliveries()
+    {
+        return truck.getCompletedDeliveries();
+    }
+
+    /**
      * Draws the basic gridlines on the JFrame, which are used to position addresses
      * @param g
      */
@@ -76,6 +85,7 @@ public class TruckMap extends JPanel {
             g.fillRect(350, 350, 300, 100);
             g.setColor(Color.black);
             g.drawString("Order to: " + truck.letterLocation(truck.getLocationX()) + truck.getLocationY() + " Street Completed", 400, 400);
+            g.drawString("Deliveries Completed: " + getCompletedDeliveries(), 425, 425);
         }
     }
 

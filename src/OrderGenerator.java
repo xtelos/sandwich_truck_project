@@ -57,6 +57,11 @@ public class OrderGenerator
         }
     }
 
+    /**
+     * writes the order address into the file
+     * @param street
+     * @param houseNum
+     */
     public void writeAddressToFile(String street, int houseNum) {
         Address address = new Address(houseNum, street);
         addressBook.add(address);

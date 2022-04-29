@@ -6,6 +6,7 @@ public class TruckMovement {
     public LinkedList<Location> destinations;
     public Location location;
     public double distanceTravelled;
+    public int completedDeliveries;
 
     public TruckMovement(Truck truck, LinkedList<Location> destinations)
     {
@@ -13,6 +14,7 @@ public class TruckMovement {
         this.location = truck.location;
         this.destinations = destinations;
         this.distanceTravelled = 0;
+        completedDeliveries = 0;
     }
 
     /**
@@ -25,6 +27,7 @@ public class TruckMovement {
     {
         if(location.equals(destination)) {
             destinations.removeFirst();
+            completedDeliveries++;
             try {
                 Thread.sleep(1000);
             }
@@ -64,13 +67,20 @@ public class TruckMovement {
         }
 
 
+    /**
+     * moves truck up or down based on condition and destination
+     * @param destination
+     */
     private void moveUpOrDown(Location destination) {
         if (destination.getClosestIntersectionY() > location.getY())
             truckMoveDown();
         else
             truckMoveUp();
     }
-
+    /**
+     * moves truck left or right based on condition and destination
+     * @param destination
+     */
     private void moveLeftOrRight(Location destination) {
         if (destination.getClosestIntersectionX() > location.getX())
             truckMoveRight();
@@ -88,27 +98,42 @@ public class TruckMovement {
     }
 
 
-
+    /**
+     * moves truck up
+     */
     private void truckMoveUp(){
         location.setLocation(location.getX(), location.getY()-10);
         distanceTravelled += 0.01;
+        completedDeliveries = 0;
     }
 
 
+    /**
+     * moves truck down
+     */
     private void truckMoveDown(){
         location.setLocation(location.getX(), location.getY()+10);
         distanceTravelled += 0.01;
+        completedDeliveries = 1;
     }
 
 
+    /**
+     * moves truck left
+     */
     private void truckMoveLeft(){
         location.setLocation(location.getX()-10, location.getY());
         distanceTravelled += 0.01;
+        completedDeliveries = 2;
     }
 
+    /**
+     * moves truck right
+     */
     private void truckMoveRight(){
         location.setLocation(location.getX()+10, location.getY());
         distanceTravelled += 0.01;
+        completedDeliveries = 3;
     }
 
 

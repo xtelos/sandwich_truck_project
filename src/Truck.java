@@ -29,11 +29,19 @@ public class Truck extends JPanel implements Representations {
         createImage();
     }
 
+    /**
+     *
+     * @return x value of location
+     */
     @Override
     public int getLocationX() {
         return location.getX();
     }
 
+    /**
+     *
+     * @return y value of location
+     */
     @Override
     public int getLocationY() {
         return location.getY();
@@ -77,6 +85,11 @@ public class Truck extends JPanel implements Representations {
         }
     }
 
+    /**
+     * converts a street into a letter for GUI display
+     * @param street
+     * @return
+     */
     public String letterLocation(int street)
     {
         return location.streetToLetter(street);
@@ -92,9 +105,23 @@ public class Truck extends JPanel implements Representations {
         g.drawImage(image,location.getX()-10,location.getY()-10,20,20,null);
     }
 
+    /**
+     *
+     * @return distance traveled
+     */
     public double getDistanceTravelled()
     {
         return truckMovement.getDistanceTravelled();
     }
+
+    /**
+     *
+     * @return completedDeliveries from Truckmovement
+     */
+    public int getCompletedDeliveries()
+    {
+        return truckMovement.completedDeliveries;
+    }
+
 
 }

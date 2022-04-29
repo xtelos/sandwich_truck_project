@@ -30,11 +30,11 @@ public class OptionsMenu extends JFrame implements ActionListener {
         panel.setLayout(null);
         distanceButton = new JButton("Distance Strategy");
         distanceButton.addActionListener(this);
-        distanceButton.setBounds(200, 10, 500,300);
+        distanceButton.setBounds(200, 10, 500,200);
         panel.add(distanceButton);
         timeButton = new JButton("Time Strategy");
         timeButton.addActionListener(this);
-        timeButton.setBounds(200, 310, 500, 300);
+        timeButton.setBounds(200, 210, 500, 200);
         panel.add(timeButton);
         addOrderButton = new JButton("Add Order");
         addOrderButton.addActionListener(this);
@@ -64,6 +64,7 @@ public class OptionsMenu extends JFrame implements ActionListener {
             TruckSim sim = new TruckSim(new TimeStrategy());
             sim.runSim();
         }
+
         else{
             // Orders must be in format of 999 M Street,9:99,Ham Sandwich
             try {

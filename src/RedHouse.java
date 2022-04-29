@@ -21,16 +21,27 @@ public class RedHouse extends JPanel implements Representations {
         createImage();
     }
 
+    /**
+     * returns location x value
+     * @return
+     */
     @Override
     public int getLocationX() {
         return location.getX();
     }
 
+    /**
+     * returns location y value
+     * @return
+     */
     @Override
     public int getLocationY() {
         return location.getY();
     }
 
+    /**
+     * creates an inmage for the house
+     */
     @Override
     public void createImage() {
         try {
@@ -40,7 +51,9 @@ public class RedHouse extends JPanel implements Representations {
         }
     }
 
-
+    /**
+     * updates the houses location if the truck arrives
+     */
     @Override
     public void update() {
         if (destinations.size()>1)
@@ -54,16 +67,29 @@ public class RedHouse extends JPanel implements Representations {
         }
     }
 
+    /**
+     *
+     * @return true if destination list is empty
+     */
     public boolean isEmpty(){
         return destinations.isEmpty();
     }
 
+    /**
+     * paints the house
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image,location.getX(),location.getY(),20,20,null);
     }
 
+    /**
+     * converts street address to letter for GUI display
+     * @param street
+     * @return
+     */
     public String letterLocation(int street)
     {
         return location.streetToLetter(street);

@@ -57,6 +57,11 @@ public class ServiceCenter extends JPanel implements Representations{
     }
 
 
+    /**
+     * comnverts street number to letter for GUI display
+     * @param street
+     * @return
+     */
     public String letterLocation(int street)
     {
         return location.streetToLetter(street);
