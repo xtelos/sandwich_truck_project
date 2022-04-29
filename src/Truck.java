@@ -10,6 +10,7 @@ public class Truck extends JPanel implements Representations {
 
     public Location location;
     public LinkedList<Location> destinations;
+    public LinkedList<String> sandwichOrders;
     public BufferedImage image;
     public RouteStrategy strategy;
     public TruckMovement truckMovement;
@@ -20,8 +21,10 @@ public class Truck extends JPanel implements Representations {
         this.strategy = strategy;
         this.location = new Location(500,500);
         destinations = new LinkedList<>();
+        sandwichOrders = new LinkedList<>();
         DestinationCreator destinationCreator = new DestinationCreator();
         destinationCreator.createDestinations(destinations, this.strategy);
+        sandwichOrders = destinationCreator.getSandwichOrders();
         destinations.addLast(new Location(500,500));
 
         truckMovement = new TruckMovement(this,destinations);
@@ -114,4 +117,15 @@ public class Truck extends JPanel implements Representations {
         return truckMovement.getDistanceTravelled();
     }
 
+
+    /**
+     * gets the next sandwich on the list ready
+     */
+    public void updateSandwiches(){
+        sandwichOrders.removeFirst();
     }
+
+    public String currentSandwich(){
+        return sandwichOrders.getFirst();
+    }
+}

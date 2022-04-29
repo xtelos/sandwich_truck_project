@@ -33,6 +33,7 @@ public class TruckMap extends JPanel {
             redHouse.update();
             messageAppears = true;
             completedDeliveries++;
+            truck.updateSandwiches();
         }
         else{
             truck.update();
@@ -84,11 +85,12 @@ public class TruckMap extends JPanel {
         }
         if (messageAppears)
         {
-            g.setColor(Color.CYAN);
-            g.fillRect(350, 350, 300, 100);
+            g.setColor(new Color(51,153,255, 127));
+            g.fillRect(300, 350, 400, 100);
             g.setColor(Color.black);
-            g.drawString("Order to: " + truck.letterLocation(truck.getLocationX()) + truck.getLocationY() + " Street Completed", 400, 400);
-            g.drawString("Deliveries Completed: " + getCompletedDeliveries(), 425, 425);
+            g.drawString("Order to: " + truck.letterLocation(truck.getLocationX()) + truck.getLocationY() + " Street Completed", 310, 375);
+            g.drawString("Sandwich: " + truck.currentSandwich(), 310, 395);
+            g.drawString("Deliveries Completed: " + getCompletedDeliveries(), 310, 415);
         }
     }
 

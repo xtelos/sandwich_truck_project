@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class DestinationCreator {
 
+    public LinkedList<String> sandwichOrders = new LinkedList<>();
     /**
      * creates list of destinations for the route
      * @param destinations
@@ -15,11 +16,24 @@ public class DestinationCreator {
     public void createDestinations(LinkedList<Location> destinations, RouteStrategy strategy){
         ArrayList<Order> orders = readBatchFile();
         PriorityQueue<Order> queue = strategy.createRoute(orders);
+        for(Order order: queue)
+        {
+            sandwichOrders.add(order.getSandwich().getDescription());
+        }
         int temp = queue.size() - 100;
         for (int i = 0; i < temp + 100; i++) {
             Location destination = queue.poll().convertToLocation();
             destinations.add(destination);
         }
+    }
+
+    /**
+     *
+     * @return list of sandwiches
+     */
+    public LinkedList<String> getSandwichOrders()
+    {
+        return sandwichOrders;
     }
 
 
