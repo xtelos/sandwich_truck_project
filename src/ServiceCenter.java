@@ -20,7 +20,7 @@ public class ServiceCenter extends JPanel implements Representations{
 
     /**
      * returns x value of the location
-     * @return
+     * @return location
      */
     @Override
     public int getLocationX() {
@@ -29,7 +29,7 @@ public class ServiceCenter extends JPanel implements Representations{
 
     /**
      * returns y value of the location
-     * @return
+     * @return location
      */
     @Override
     public int getLocationY() {
@@ -58,9 +58,9 @@ public class ServiceCenter extends JPanel implements Representations{
 
 
     /**
-     * comnverts street number to letter for GUI display
+     * converts street number to letter for GUI display
      * @param street
-     * @return
+     * @return location
      */
     public String letterLocation(int street)
     {

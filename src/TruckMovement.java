@@ -7,6 +7,12 @@ public class TruckMovement {
     public Location location;
     public double distanceTravelled;
 
+    /**
+     * Takes the truck variable and its destinations and assigns them to the variables of this class, while setting
+     * the distanceTravelled to zero.
+     * @param truck
+     * @param destinations
+     */
     public TruckMovement(Truck truck, LinkedList<Location> destinations)
     {
         this.truck = truck;

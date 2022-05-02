@@ -16,7 +16,7 @@ public class Location {
 
     /**
      * returns x coordinate
-     * @return
+     * @return x
      */
     int getX() {
             return x;
@@ -24,7 +24,7 @@ public class Location {
 
     /**
      * returns y coordinate
-     * @return
+     * @return y
      */
     int getY() {
             return y;
@@ -34,7 +34,7 @@ public class Location {
      * sets destination for object to travel to from its location
      * @param x
      * @param y
-     * @return
+     * @return location
      */
         public Location setLocation(int x, int y){
             this.x = x;
@@ -44,9 +44,9 @@ public class Location {
 
     /**
      * calculates distance between two locations
-     * @param v1
-     * @param v2
-     * @return
+     * @param v1 First location
+     * @param v2 Second location
+     * @return double
      */
         public double distance(Location v1, Location v2)
         {
@@ -59,7 +59,7 @@ public class Location {
     /**
      * true if truck location is equal to house location
      * @param obj
-     * @return
+     * @return boolean
      */
     @Override
         public boolean equals(Object obj) {
@@ -67,7 +67,11 @@ public class Location {
             return x == other.x && y == other.y;
         }
 
-        @Override
+    /**
+     * Returns a with the location details
+     * @return String
+     */
+    @Override
         public String toString() {
             return "Location{" +
                     "x=" + x +
@@ -77,7 +81,7 @@ public class Location {
 
     /**
      * returns the x value of the closest intersection's x value
-     * @return
+     * @return int
      */
     public int getClosestIntersectionX() {
         int streetMod = this.x % 100;
@@ -91,7 +95,7 @@ public class Location {
 
     /**
      * returns the y value of the closest intersection's x value
-     * @return
+     * @return int
      */
     public int getClosestIntersectionY() {
         int streetMod = this.y % 100;
@@ -107,7 +111,7 @@ public class Location {
     /**
      * converts street into c address to display
      * @param street
-     * @return
+     * @return int
      */
     public String streetToLetter(int street)
     {

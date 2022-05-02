@@ -18,16 +18,27 @@ public class OrangeHouse extends JPanel implements Representations {
         createImage();
     }
 
+    /**
+     * Getter for x value of location
+     * @return location
+     */
     @Override
     public int getLocationX() {
         return location.getX();
     }
 
+    /**
+     * Getter for y value of location
+     * @return
+     */
     @Override
     public int getLocationY() {
         return location.getY();
     }
 
+    /**
+     * Creates image for the house
+     */
     @Override
     public void createImage() {
         try {
@@ -37,11 +48,18 @@ public class OrangeHouse extends JPanel implements Representations {
         }
     }
 
+    /**
+     * Updates the house location if the truck arrives
+     */
     @Override
     public void update() {
 
     }
 
+    /**
+     * paints the house
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

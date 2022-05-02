@@ -13,6 +13,9 @@ public class OrderGenerator
 {
     private final ArrayList<Address> addressBook;
 
+    /**
+     * Instantiates the ArrayList for the address list
+     */
     public OrderGenerator() {
         addressBook = new ArrayList<>(1000);
     }

@@ -7,8 +7,6 @@ public class TruckSim extends JFrame{
     public ServiceCenter serviceCenter;
     public RedHouse redHouse;
 
-
-
     /**
      * creates JFrame of neighborhood with input length and with of window
      */

@@ -12,6 +12,10 @@ public class RedHouse extends JPanel implements Representations {
     public LinkedList<Location> destinations;
     public BufferedImage image;
 
+    /**
+     * Takes the route strategy and creates the destinations for where houses should be placed
+     * @param strategy
+     */
     RedHouse(RouteStrategy strategy){
         this.destinations = new LinkedList<>();
 
@@ -23,7 +27,7 @@ public class RedHouse extends JPanel implements Representations {
 
     /**
      * returns location x value
-     * @return
+     * @return location
      */
     @Override
     public int getLocationX() {
@@ -32,7 +36,7 @@ public class RedHouse extends JPanel implements Representations {
 
     /**
      * returns location y value
-     * @return
+     * @return location
      */
     @Override
     public int getLocationY() {
@@ -40,7 +44,7 @@ public class RedHouse extends JPanel implements Representations {
     }
 
     /**
-     * creates an inmage for the house
+     * creates an image for the house
      */
     @Override
     public void createImage() {
@@ -52,7 +56,7 @@ public class RedHouse extends JPanel implements Representations {
     }
 
     /**
-     * updates the houses location if the truck arrives
+     * updates the house location if the truck arrives
      */
     @Override
     public void update() {
@@ -68,7 +72,7 @@ public class RedHouse extends JPanel implements Representations {
     }
 
     /**
-     *
+     * Determines if destination list is empty and returns a boolean
      * @return true if destination list is empty
      */
     public boolean isEmpty(){
@@ -88,7 +92,7 @@ public class RedHouse extends JPanel implements Representations {
     /**
      * converts street address to letter for GUI display
      * @param street
-     * @return
+     * @return location
      */
     public String letterLocation(int street)
     {

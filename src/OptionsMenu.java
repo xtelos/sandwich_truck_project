@@ -14,6 +14,9 @@ public class OptionsMenu extends JFrame implements ActionListener {
     public JButton addOrderButton;
     public JTextField orderText;
 
+    /**
+     * Instantiates the OptionsMenu
+     */
     public OptionsMenu()
     {
         setSize(1500,1500);

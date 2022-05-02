@@ -11,6 +11,9 @@ public class DistanceStrategy implements RouteStrategy{
 
     private PriorityQueue<Order> queue;
 
+    /**
+     * Implements the order queue for the DistanceStrategy using a PriorityQueue pulling from the DistanceComparator()
+     */
     public DistanceStrategy() {
         queue = new PriorityQueue<>(new DistanceComparator());
     }

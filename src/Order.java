@@ -13,6 +13,12 @@ public class Order {
     private TimeStamp timeStamp;
     private Sandwich sandwich;
 
+    /**
+     * Instantiates an Order containing the address of the order, the timestamp of the order, and the sandwich of the order
+     * @param address
+     * @param timeStamp
+     * @param sandwich
+     */
     public Order(Address address, TimeStamp timeStamp, Sandwich sandwich) {
         this.address = address;
         this.timeStamp = timeStamp;
@@ -43,6 +49,10 @@ public class Order {
         return this.sandwich;
     }
 
+    /**
+     * Returns the Order description
+     * @return String
+     */
     @Override
     public String toString() {
         return address.toString() + "," + timeStamp.toString() + "," + sandwich.getDescription();

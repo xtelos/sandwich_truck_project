@@ -43,7 +43,7 @@ public class TruckMap extends JPanel {
     }
 
     /**
-     *
+     * Getter for completedDeliveries
      * @return completedDeliveries
      */
     public int getCompletedDeliveries()

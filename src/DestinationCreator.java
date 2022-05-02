@@ -28,7 +28,7 @@ public class DestinationCreator {
     }
 
     /**
-     *
+     * Getter for sandwichOrders
      * @return list of sandwiches
      */
     public LinkedList<String> getSandwichOrders()

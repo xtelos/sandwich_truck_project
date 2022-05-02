@@ -6,6 +6,10 @@ public class TimeStrategy implements RouteStrategy{
 
     private PriorityQueue<Order> queue;
 
+    /**
+     * Instantiates the order queue using a PriorityQueue with a TimeComparator for its parameter to carry out
+     * the TimeStrategy
+     */
     public TimeStrategy() {
         queue = new PriorityQueue<>(new TimeComparator());
     }

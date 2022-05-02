@@ -4,14 +4,14 @@ import java.awt.*;
 public interface Representations {
 
     /**
-     * returns turcks x location value
-     * @return
+     * returns trucks x location value
+     * @return int
      */
     public int getLocationX();
 
     /**
      * returns trucks y location value
-     * @return
+     * @return int
      */
     public int getLocationY();
 
@@ -27,7 +27,7 @@ public interface Representations {
 
     /**
      * paints representation on the map
-     * @param g
+     * @param g component to be painted
      */
     public void paintComponent(Graphics g);
 

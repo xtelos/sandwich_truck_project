@@ -9,6 +9,11 @@ public class TimeStamp {
     private int hours;
     private int minutes;
 
+    /**
+     * Creates a TimeStamp using two ints in the parameter to fill in the private variables for hours and minutes
+     * @param hours
+     * @param minutes
+     */
     public TimeStamp(int hours, int minutes) {
         if (hours > 1 && hours < 13) {
             this.hours = hours;

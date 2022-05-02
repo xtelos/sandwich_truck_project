@@ -33,7 +33,7 @@ public class Truck extends JPanel implements Representations {
     }
 
     /**
-     *
+     * Getter for the x value
      * @return x value of location
      */
     @Override
@@ -42,7 +42,7 @@ public class Truck extends JPanel implements Representations {
     }
 
     /**
-     *
+     * Getter for the y value
      * @return y value of location
      */
     @Override
@@ -109,7 +109,7 @@ public class Truck extends JPanel implements Representations {
     }
 
     /**
-     *
+     * Returns the distance travelled from TruckMovement
      * @return distance traveled
      */
     public double getDistanceTravelled()
